@@ -2,12 +2,13 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 # =========================
 # Page config
 # =========================
 st.set_page_config(
-    page_title="Strategic Market Research | Ultra-Rapid AST",
+    page_title="Ultra-Rapid Phenotypic AST Market | Strategic Dashboard",
     page_icon="🔬",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -27,6 +28,8 @@ CARD = "rgba(255, 255, 255, 0.85)"
 INK = "#1A1014"
 MUTED = "#6B5B63"
 BORDER = "rgba(255, 255, 255, 0.9)"
+SLATE = "#475569"
+SLATE_LIGHT = "#94a3b8"
 
 PRIMARY_PASSWORD = "SMR2026"
 CLIENT_NAME = "Gradientech AB"
@@ -234,10 +237,10 @@ st.markdown(
     }}
     .section-title {{
       display: flex; justify-content: space-between; align-items: center;
-      font-size: 1.2rem; font-weight: 800; color: {BURGUNDY}; margin-bottom: 6px; letter-spacing: -0.01em;
+      font-size: 1.4rem; font-weight: 800; color: {BURGUNDY}; margin-bottom: 6px; letter-spacing: -0.01em;
     }}
     .section-sub {{
-      color: {MUTED}; font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5;
+      color: {MUTED}; font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5;
     }}
     
     .insight-box {{
@@ -583,7 +586,7 @@ CHAPTERS_BOTTOM = {
     <p style="margin-bottom:0; font-size:0.9rem;">Scale aggressive U.S. commercial entry post-FDA. Transition from early adopters to broader Tier 2 regional hospital penetration. Optimize distributor networks in APAC/MENA. Shift deeply into reagent rental business models to remove capital constraints.</p>
 </div>
 <div style="border-left: 4px solid #A45A7B; padding-left: 20px; margin-bottom: 20px; background: #fff; padding-top:10px; padding-bottom:10px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
-    <h3 style="color: #431022; margin-bottom: 5px;">Phase 3: Category Leadership (2032–2035)</h3>
+    <h3 style="color: #431022; margin-top:0; margin-bottom: 5px;">Phase 3: Category Leadership (2032–2035)</h3>
     <p style="margin-bottom:0; font-size:0.9rem;">Exploit standard-of-care shift in acute guidelines. Expand menu beyond Gram-negative BSI. Defend speed commoditization through panel breadth and continuous innovation. Deepen recurring consumable utilization to protect margins against incumbent bundles.</p>
 </div>
 </div>
@@ -664,6 +667,17 @@ def render_regional_chart():
     fig.update_yaxes(title_text="Revenue ($Mn)")
     st.plotly_chart(apply_theme(fig, "Regional SOM Growth Forecast"), use_container_width=True, config={"displayModeBar": False})
 
+def render_country_bar():
+    countries = ["USA", "China", "Germany", "Japan", "Italy", "UK", "France", "S. Korea", "Spain"]
+    vals_25 = [34, 8, 10, 7, 8, 8, 7, 4, 5]
+    vals_35 = [285, 88, 58, 52, 48, 46, 44, 41, 33]
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=countries, y=vals_35, name="2035 ($Mn)", marker_color=BURGUNDY))
+    fig.add_trace(go.Bar(x=countries, y=vals_25, name="2025 ($Mn)", marker_color=GOLD))
+    fig.update_layout(barmode='group')
+    st.plotly_chart(apply_theme(fig, "Top 9 Market Opportunities ($Mn)"), use_container_width=True, config={"displayModeBar": False})
+
 def render_speed_chart():
     labels = ['Conventional', 'Pheno', 'ASTar', 'VITEK REVEAL', 'dRAST', 'QuickMIC']
     times = [24, 7, 6, 5.75, 4, 3]
@@ -724,6 +738,21 @@ def render_competitor_scatter():
     fig.update_yaxes(title_text="Premium Pricing Power (Score)", range=[0, 11])
     st.plotly_chart(apply_theme(fig, "Speed vs. Premium Positioning"), use_container_width=True, config={"displayModeBar": False})
 
+def render_competitor_matrix():
+    data = pd.DataFrame({
+        "Speed": [5, 4, 3.5, 3.5, 3.5, 3],
+        "Installed Base": [1, 2, 2.5, 5, 1, 5],
+        "Workflow": [3, 3, 4, 5, 4, 4],
+        "Scale": [2, 2, 3, 5, 2, 5],
+    }, index=["QuickMIC", "dRAST", "ASTar", "REVEAL", "Selux", "Bruker"])
+
+    fig = px.imshow(
+        data.values, x=data.columns, y=data.index, aspect="auto",
+        color_continuous_scale=[[0, "#FAF5F7"], [0.5, GOLD], [1, BURGUNDY]],
+        text_auto=True
+    )
+    fig.update_layout(coloraxis_showscale=False)
+    st.plotly_chart(apply_theme(fig, "Capability & Threat Matrix (1=Low, 5=High)"), use_container_width=True, config={"displayModeBar": False})
 
 # =========================
 # Main app logic & Security Gate
@@ -825,22 +854,26 @@ if page == "Executive Overview":
     page_footer()
 
 else:
-    # 100% Safe rendering logic (no HTML splits)
+    # 100% Safe rendering logic (No HTML splitting)
     st.markdown(CHAPTERS_TOP[page], unsafe_allow_html=True)
     
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # Inject the specific charts dynamically
+    # Inject the specific charts dynamically into the middle of the chapter
     if "1. " in page:
         render_market_layers_chart()
     elif "2. " in page:
-        render_regional_chart()
+        c1, c2 = st.columns(2)
+        with c1: render_regional_chart()
+        with c2: render_country_bar()
     elif "3. " in page:
         render_speed_chart()
     elif "4. " in page:
         c1, c2 = st.columns(2)
         with c1: render_competitor_scatter()
         with c2: render_pricing_chart()
+        st.markdown("<br>", unsafe_allow_html=True)
+        render_competitor_matrix()
         
     st.markdown("<br>", unsafe_allow_html=True)
     
