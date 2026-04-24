@@ -709,8 +709,10 @@ def render_speed_chart():
         text=[f"{t} hrs" for t in times],
         textposition='outside'
     ))
-    # FIXED ERROR HERE: use range=[min, max] instead of max=26
+    
+    # CRITICAL FIX: Using 'range' array instead of max=26
     fig.update_xaxes(title_text="Hours to Result", range=[0, 26])
+    
     style_plot(fig, "Time-to-Result Benchmarking")
     fig.update_layout(showlegend=False)
     st.plotly_chart(fig, use_container_width=True)
@@ -753,7 +755,6 @@ def render_competitor_scatter():
             marker=dict(size=14, color=c["color"])
         ))
     
-    # Adjusted range so labels don't get cut off
     fig.update_xaxes(title_text="Time to Result (Hours) ← Closer to 0 is Better", autorange="reversed", range=[26, -2])
     fig.update_yaxes(title_text="Premium Pricing Power (Score)", range=[0, 11])
     style_plot(fig, "Speed vs. Premium Positioning")
@@ -827,7 +828,7 @@ def render_chapter_page(title: str, nav_options: list[str]) -> None:
     
     html_content = CHAPTERS[title]
     
-    # FIXED ERROR HERE: strictly split by the precise string marker
+    # CRITICAL FIX: Ensure precise split string
     parts = html_content.split("")
     
     st.markdown(parts[0], unsafe_allow_html=True)
