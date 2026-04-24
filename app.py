@@ -4,6 +4,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+# =========================
+# Page config
+# =========================
 st.set_page_config(
     page_title="Ultra-Rapid Phenotypic AST Market | Strategic Dashboard",
     page_icon="🔬",
@@ -11,20 +14,20 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# -----------------------------
-# BRAND SYSTEM (Deep Burgundy Theme)
-# -----------------------------
+# =========================
+# Theme Colors & Notes
+# =========================
 BURGUNDY = "#5B0F2E"
-BURGUNDY_DARK = "#431024"
-BURGUNDY_LIGHT = "#7A163F"
-BURGUNDY_SOFT = "#F7EEF2"
-ROSE = "#E8C7D5"
-INK = "#0F172A"
-SLATE = "#475569"
-SLATE_LIGHT = "#64748B"
-BORDER = "#E5E7EB"
-BG = "#F6F2F4"
-WHITE = "#FFFFFF"
+BURGUNDY_DARK = "#431022"
+BURGUNDY_MID = "#7A1C41"
+BURGUNDY_SOFT = "#A45A7B"
+GOLD = "#C9A227"
+ROSE = "#EEDBE4"
+BG = "#F8F5F6"
+CARD = "rgba(255, 255, 255, 0.85)"
+INK = "#1A1014"
+MUTED = "#6B5B63"
+BORDER = "rgba(255, 255, 255, 0.9)"
 
 PRIMARY_PASSWORD = "SMR2026"
 CLIENT_NAME = "Gradientech AB"
@@ -36,15 +39,276 @@ QUICK_METRICS = {
     "Clinical Threshold": "≤ 4 Hours",
 }
 
-# -----------------------------
-# DATA / CONTENT
-# -----------------------------
+# =========================
+# CSS / UI polish (Ultra-Premium Glassmorphism)
+# =========================
+st.markdown(
+    f"""
+    <style>
+    /* Premium Web Font */
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+    html, body, [class*="css"] {{
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        color: {INK} !important;
+    }}
+
+    /* UI HIDING FOR WHITE-LABELING */
+    [data-testid="stToolbar"] {{ display: none !important; }}
+    .viewerBadge_container, #viewerBadge_container {{ display: none !important; }}
+    footer {{ display: none !important; }}
+    header[data-testid="stHeader"] {{ background: transparent !important; box-shadow: none !important; }}
+
+    /* CUSTOM ELEGANT SCROLLBAR */
+    ::-webkit-scrollbar {{
+        width: 6px;
+        height: 6px;
+    }}
+    ::-webkit-scrollbar-track {{
+        background: transparent;
+    }}
+    ::-webkit-scrollbar-thumb {{
+        background: rgba(91,15,46,0.15);
+        border-radius: 10px;
+    }}
+    ::-webkit-scrollbar-thumb:hover {{
+        background: rgba(91,15,46,0.3);
+    }}
+
+    /* LIVING GRADIENT BACKGROUND */
+    .stApp {{
+      background: radial-gradient(circle at 15% 0%, rgba(201,162,39,0.04) 0%, transparent 40%),
+                  radial-gradient(circle at 85% 100%, rgba(91,15,46,0.03) 0%, transparent 40%),
+                  linear-gradient(180deg, #FCFAFB 0%, #F4ECEF 100%);
+      background-attachment: fixed;
+    }}
+
+    /* SIDEBAR REFINEMENT */
+    [data-testid="stSidebar"] {{
+        background: rgba(255,255,255,0.6) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border-right: 1px solid rgba(91,15,46,0.08) !important;
+    }}
+
+    /* SLEEK BUTTON STYLING */
+    .stButton > button {{
+        background: linear-gradient(135deg, {BURGUNDY} 0%, {BURGUNDY_MID} 100%) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 10px !important;
+        padding: 10px 24px !important;
+        font-weight: 700 !important;
+        font-size: 0.9rem !important;
+        letter-spacing: 0.02em;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        box-shadow: 0 4px 14px rgba(91,15,46,0.2) !important;
+    }}
+    .stButton > button:hover {{
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 24px rgba(91,15,46,0.3) !important;
+    }}
+
+    /* INPUT FIELDS */
+    .stTextInput input {{
+        border-radius: 8px !important;
+        border: 1px solid rgba(91,15,46,0.15) !important;
+        padding: 12px 14px !important;
+        background: rgba(255,255,255,0.8) !important;
+        transition: all 0.2s ease !important;
+    }}
+    .stTextInput input:focus {{
+        border-color: {GOLD} !important;
+        background: #fff !important;
+        box-shadow: 0 0 0 3px rgba(201,162,39,0.15) !important;
+    }}
+
+    /* APP-LIKE NAVIGATION */
+    [data-testid="stSidebar"] [data-testid="stRadio"] label[data-baseweb="radio"] {{
+        padding: 10px 14px !important;
+        margin-bottom: 6px !important;
+        border-radius: 8px !important;
+        transition: all 0.2s ease !important;
+        cursor: pointer !important;
+    }}
+    [data-testid="stSidebar"] [data-testid="stRadio"] label[data-baseweb="radio"]:hover {{
+        background: rgba(91,15,46,0.04) !important;
+        transform: translateX(3px) !important;
+    }}
+    [data-testid="stSidebar"] [data-testid="stRadio"] label[data-baseweb="radio"]:has(input[checked]) {{
+         background: #ffffff !important;
+         border-left: 4px solid {BURGUNDY} !important;
+         box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
+    }}
+    [data-testid="stSidebar"] [data-testid="stRadio"] label[data-baseweb="radio"] p {{
+        font-weight: 600 !important;
+        font-size: 0.92rem !important;
+        color: {INK} !important;
+    }}
+
+    /* FROSTED BRANDING HEADER */
+    .smr-brand {{
+      background: rgba(255,255,255,0.7);
+      border: 1px solid {BORDER};
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+      margin-bottom: 24px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }}
+    
+    .hero {{
+      background: linear-gradient(135deg, {BURGUNDY} 0%, {BURGUNDY_MID} 60%, {BURGUNDY_SOFT} 100%);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 34px 40px;
+      box-shadow: 0 20px 40px rgba(61,16,33,0.15), inset 0 1px 0 rgba(255,255,255,0.2);
+      margin-bottom: 24px;
+      animation: floatIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+    }}
+    .hero::before {{
+      content: ''; position: absolute; top: -50%; right: -10%; width: 60%; height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+      transform: rotate(-45deg);
+    }}
+    .hero-head {{
+      display:flex; align-items:center; gap:18px; margin-bottom:8px; position: relative; z-index: 2;
+    }}
+    .hero h2 {{
+      margin: 0; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }}
+    
+    /* GLASSMORPHISM DATA CARDS */
+    .metric-card {{
+      background: {CARD};
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid {BORDER};
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 12px 36px rgba(91,15,46,0.03), 0 2px 8px rgba(0,0,0,0.02);
+      min-height: 135px;
+      animation: floatIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }}
+    .metric-card:hover {{
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(91,15,46,0.08), 0 4px 12px rgba(0,0,0,0.03);
+      border-color: rgba(201,162,39,0.3);
+    }}
+    .metric-label {{
+      color: {MUTED};
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }}
+    .metric-value {{
+      color: {BURGUNDY};
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }}
+    .metric-foot {{
+      color: {MUTED};
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }}
+
+    .section-card {{
+      background: {CARD};
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid {BORDER};
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 12px 36px rgba(91,15,46,0.03);
+      margin-bottom: 24px;
+      animation: floatIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }}
+    .section-title {{
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 1.4rem; font-weight: 800; color: {BURGUNDY}; margin-bottom: 6px; letter-spacing: -0.01em;
+    }}
+    .section-sub {{
+      color: {MUTED}; font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5;
+    }}
+    
+    .insight-box {{
+      background: #ffffff;
+      border: 1px solid rgba(201,162,39,0.2);
+      border-left: 6px solid {GOLD};
+      border-radius: 12px;
+      padding: 20px 24px;
+      color: {INK};
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(201,162,39,0.05);
+      animation: floatIn 0.6s ease-out;
+    }}
+    
+    .viewer-chip {{
+      display:inline-block; padding:6px 12px; border-radius:999px; font-size:0.75rem; font-weight:700;
+      background: rgba(91,15,46,0.06); border: 1px solid rgba(91,15,46,0.1); color: {BURGUNDY};
+      margin-top:10px; margin-bottom: 10px;
+    }}
+
+    /* CHAPTER CONTENT FORMATTING */
+    .chapter-content h1 {{
+        font-size: 2.15rem; font-weight: 800; color: {INK};
+        margin-top: 0; margin-bottom: 1.5rem;
+        border-bottom: 2px solid {BORDER}; padding-bottom: 0.55rem;
+    }}
+    .chapter-content h2 {{
+        font-size: 1.5rem; font-weight: 700; color: {BURGUNDY_DARK};
+        margin-top: 2rem; margin-bottom: 1rem;
+    }}
+    .chapter-content p {{
+        margin-bottom: 1.25rem; line-height: 1.8; color: {MUTED}; font-size: 0.99rem;
+    }}
+    .chapter-content table {{
+        width: 100%; border-collapse: collapse; margin: 1.5rem 0;
+        background-color: #ffffff; border-radius: 0.6rem; overflow: hidden; border: 1px solid {BORDER};
+    }}
+    .chapter-content th {{
+        background: linear-gradient(180deg, {BURGUNDY} 0%, {BURGUNDY_DARK} 100%);
+        color: #ffffff; font-weight: 700; text-align: left; padding: 0.85rem 1rem; font-size: 0.88rem;
+    }}
+    .chapter-content td {{
+        padding: 0.8rem 1rem; border-bottom: 1px solid {BORDER}; color: {MUTED}; font-size: 0.88rem; vertical-align: top;
+    }}
+    .chapter-content tr:last-child td {{ border-bottom: none; }}
+    .chapter-content tr:hover td {{ background-color: {ROSE}; }}
+
+    @keyframes floatIn {{
+      from {{ opacity: 0; transform: translateY(16px); }}
+      to {{ opacity: 1; transform: translateY(0px); }}
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# =========================
+# DATA / CONTENT (HARDCODED CHART_INJECTION TAGS)
+# =========================
 CHAPTERS = {
     "1. Executive Overview & Strategic Snapshot": r'''
 <div class="chapter-content">
 <h1>1. Executive Overview & Strategic Snapshot</h1>
 <p>Market estimates indicate a structural paradigm shift in microbiology, transitioning from routine overnight profiling toward time-critical, acute-care decision support where speed creates measurable clinical and economic value.</p>
 <p>The global antimicrobial susceptibility testing (AST) market is vast, but the true strategic value lies in carving out the acute-care, speed-sensitive segment. The opportunity narrows from broad routine diagnostics to the high-premium, ultra-rapid phenotypic AST sector where platforms like Gradientech QuickMIC generate actionable clinical value. The data demonstrates a critical shift from legacy workflow automation to time-critical decision support in severe infections.</p>
+
+[CHART_INJECTION]
+
 <h2>Global TAM–SAM–SOM Forecast Definition ($Mn)</h2>
 <table>
     <thead>
@@ -67,7 +331,7 @@ CHAPTERS = {
             <td>6.9%</td>
         </tr>
         <tr>
-            <td class="font-semibold text-burgundy-700">SAM</td>
+            <td style="color:#7A1C41; font-weight:600;">SAM</td>
             <td class="text-sm">Advanced / rapid AST market</td>
             <td>$1,186.0</td>
             <td>$1,945.0</td>
@@ -75,18 +339,17 @@ CHAPTERS = {
             <td>10.4%</td>
         </tr>
         <tr>
-            <td class="font-bold text-burgundy-900 bg-burgundy-50">SOM</td>
-            <td class="text-sm bg-burgundy-50">Ultra-rapid phenotypic AST core opportunity</td>
-            <td class="font-bold bg-burgundy-50">$82.7</td>
-            <td class="font-bold bg-burgundy-50">$169.3</td>
-            <td class="font-bold bg-burgundy-50">$264.5</td>
-            <td class="font-bold bg-burgundy-50">12.3%</td>
+            <td style="color:#5B0F2E; font-weight:800; background:#EEDBE4;">SOM</td>
+            <td style="font-size:0.875rem; background:#EEDBE4;">Ultra-rapid phenotypic AST core opportunity</td>
+            <td style="font-weight:700; background:#EEDBE4;">$82.7</td>
+            <td style="font-weight:700; background:#EEDBE4;">$169.3</td>
+            <td style="font-weight:700; background:#EEDBE4;">$264.5</td>
+            <td style="font-weight:700; background:#EEDBE4;">12.3%</td>
         </tr>
     </tbody>
 </table>
-<div class="post-table-insight">Market estimates indicate that while TAM grows steadily, the ultra-rapid SOM scales at nearly double the rate (12.3% CAGR) due to escalating premium pricing power and ICU adoption. The opportunity narrows drastically from broad microbiology to speed-sensitive acute care.</div>
+<div class="insight-box">Market estimates indicate that while TAM grows steadily, the ultra-rapid SOM scales at nearly double the rate (12.3% CAGR) due to escalating premium pricing power and ICU adoption. The opportunity narrows drastically from broad microbiology to speed-sensitive acute care.</div>
 <p>Strategically, this indicates that participation requires distinct competencies. Ultra-rapid AST does not replace the routine lab, but rather commands a high-value clinical niche. Value creation is migrating rapidly toward specialized applications, requiring suppliers to navigate the divide between commoditized consumer diagnostics and high-value, premium acute-care subassemblies.</p>
-<div class="insight-highlight">The transition toward ultra-rapid components redefines the AST value pool, shifting dependency away from broad lab throughput and toward time-sensitive mobility and stewardship investments.</div>
 </div>
 ''',
     "2. Market Sizing, Geography & Epidemiology": r'''
@@ -94,6 +357,9 @@ CHAPTERS = {
 <h1>2. Market Sizing, Geography & Epidemiology</h1>
 <p>The geographic distribution of ultra-rapid AST demand is driven by clinical workflow maturity and willingness to pay for time, rather than population size alone. Markets where blood culture utilization is high, microbiology labs operate on extended hours, and stewardship programs are embedded into care pathways generate disproportionately higher revenue per case.</p>
 <p>This results in a clear prioritization pattern: United States and Western Europe yield the highest near-term monetization; select Asia-Pacific markets offer strong expansion potential; and emerging markets provide long-term volume upside with slower premium adoption. Revenue concentration follows clinical readiness—not epidemiological scale.</p>
+
+[CHART_INJECTION]
+
 <h2>Country-Level Speed-Sensitive Opportunity</h2>
 <table>
     <thead>
@@ -117,7 +383,7 @@ CHAPTERS = {
         <tr><td>9</td><td><strong>Spain</strong> — Priority early market</td><td>$5.0</td><td>$14.0</td><td>$33.0</td></tr>
     </tbody>
 </table>
-<div class="post-table-insight">The United States remains the largest single opportunity, combining high clinical intensity with a healthcare system that is more receptive to premium diagnostics that demonstrate outcome and cost benefits. China and Japan represent important expansion markets, where scale and AMR pressure support long-term growth.</div>
+<div class="insight-box">The United States remains the largest single opportunity, combining high clinical intensity with a healthcare system that is more receptive to premium diagnostics that demonstrate outcome and cost benefits. China and Japan represent important expansion markets, where scale and AMR pressure support long-term growth.</div>
 <h2>Global Market Forecast by Region</h2>
 <table>
     <thead>
@@ -137,7 +403,6 @@ CHAPTERS = {
     </tbody>
 </table>
 <p>North America emerges as the largest revenue pool by 2035, supported by high ICU intensity and favorable reimbursement dynamics. Europe represents the most important early adoption and validation environment, where IVDR-aligned deployment provides a strong foundation for category formation. Asia Pacific shows the fastest growth trajectory (24.5%), driven by rising AMR burden and expansion of tertiary care infrastructure.</p>
-<div class="insight-highlight">The market expands not through volume substitution, but through progressive clinical integration. Adoption begins in high-acuity ICUs and scales gradually into central hospital labs as clinical confidence in ultra-rapid results builds.</div>
 </div>
 ''',
     "3. Speed Economics & Clinical Thresholds": r'''
@@ -145,6 +410,9 @@ CHAPTERS = {
 <h1>3. Speed Economics & Clinical Thresholds</h1>
 <p>The economic value of ultra-rapid AST is not determined by speed alone, but by whether results arrive early enough to influence therapy before the next clinical decision point. In sepsis and bloodstream infections, treatment is initiated empirically, and the first opportunity to refine that decision occurs within a narrow window—typically during the next physician round, ICU review, or stewardship intervention.</p>
 <p>Diagnostics that fall outside this window primarily confirm therapy. Those that fall within it can directly change escalation, de-escalation, or narrowing decisions, creating measurable clinical and financial impact. Speed creates value only when it aligns with clinical action—not when it merely shortens laboratory time.</p>
+
+[CHART_INJECTION]
+
 <h2>Speed Threshold & Clinical Impact</h2>
 <table>
     <thead>
@@ -174,17 +442,16 @@ CHAPTERS = {
             <td>High probability of optimization</td>
             <td>+35% to +55%</td>
         </tr>
-        <tr class="bg-burgundy-50">
-            <td class="font-bold text-burgundy-900">Ultra-Rapid AST (2–4 hrs)</td>
-            <td class="font-bold text-burgundy-900">Same-shift (broad window)</td>
-            <td class="font-bold text-emerald-700">Highest probability of therapy change</td>
-            <td class="font-bold text-burgundy-900">+50% to +90%</td>
+        <tr style="background:#EEDBE4;">
+            <td style="font-weight:700; color:#5B0F2E;">Ultra-Rapid AST (2–4 hrs)</td>
+            <td style="font-weight:700; color:#5B0F2E;">Same-shift (broad window)</td>
+            <td style="font-weight:700; color:#059669;">Highest probability of therapy change</td>
+            <td style="font-weight:700; color:#5B0F2E;">+50% to +90%</td>
         </tr>
     </tbody>
 </table>
-<div class="post-table-insight">The difference between a 7-hour and a 3-hour result is not incremental—it expands the proportion of cases where intervention is still possible within the same service window. This is particularly relevant in environments where clinical decisions are clustered around defined time points rather than continuous monitoring.</div>
+<div class="insight-box">The difference between a 7-hour and a 3-hour result is not incremental—it expands the proportion of cases where intervention is still possible within the same service window. This is particularly relevant in environments where clinical decisions are clustered around defined time points rather than continuous monitoring.</div>
 <p>A 5–7 hour result may influence a subset of early-positive cases, but its impact remains dependent on laboratory timing and staffing patterns. In contrast, a 2–4 hour result captures a much larger share of cases within the actionable window, increasing both clinical relevance and economic return. Clinical and economic value is most concentrated in Intensive Care Units (ICUs), transplant settings, and hematology-oncology wards.</p>
-<div class="insight-highlight">In high-acuity environments, earlier optimization reduces inappropriate antibiotic exposure, shortens ICU stay by up to 1-2 days, and lowers downstream complications—each contributing to higher willingness to pay for 2-4 hour diagnostics.</div>
 </div>
 ''',
     "4. Competitive Landscape & Positioning": r'''
@@ -192,6 +459,9 @@ CHAPTERS = {
 <h1>4. Competitive Landscape & Positioning</h1>
 <p>The rapid AST landscape is evolving around a central constraint: speed is valuable only when it preserves clinical trust. While multiple technological approaches are accelerating turnaround time, the market continues to prioritize phenotypic credibility and true MIC-linked interpretability as the basis for therapy decisions. The competitive battlefield is fragmented but consolidating around companies that can deliver True MIC results directly from positive blood cultures.</p>
 <p>This section benchmarks Gradientech QuickMIC against direct challengers (QuantaMatrix, Q-linea, Accelerate) and incumbent giants (bioMérieux, BD). Market estimates indicate that true Minimum Inhibitory Concentration (MIC) output combined with ≤4 hour speed commands maximum pricing power.</p>
+
+[CHART_INJECTION]
+
 <h2>Device Benchmarking — Core Competitive Set</h2>
 <table>
     <thead>
@@ -204,10 +474,10 @@ CHAPTERS = {
         </tr>
     </thead>
     <tbody>
-        <tr class="bg-burgundy-50">
-            <td class="font-bold text-burgundy-900">QuickMIC (Gradientech)</td>
-            <td class="font-bold text-emerald-600">2–4 hrs</td>
-            <td class="font-bold text-burgundy-900">True Linear MIC</td>
+        <tr style="background:#EEDBE4;">
+            <td style="font-weight:700; color:#5B0F2E;">QuickMIC (Gradientech)</td>
+            <td style="font-weight:700; color:#059669;">2–4 hrs</td>
+            <td style="font-weight:700; color:#5B0F2E;">True Linear MIC</td>
             <td>CE-IVDR; U.S. 510(k) pending</td>
             <td>Fastest phenotypic AST disruptor</td>
         </tr>
@@ -248,11 +518,10 @@ CHAPTERS = {
         </tr>
     </tbody>
 </table>
-<div class="post-table-insight">Gradientech’s continuous linear MIC measurement represents a notable differentiation versus traditional discrete dilution methods. This enables detection of low-level resistance shifts, more precise dosing decisions, and improved stewardship control in borderline susceptibility cases.</div>
+<div class="insight-box">Gradientech’s continuous linear MIC measurement represents a notable differentiation versus traditional discrete dilution methods. This enables detection of low-level resistance shifts, more precise dosing decisions, and improved stewardship control in borderline susceptibility cases.</div>
 <h2>Regulatory Confidence & Disruption Risk</h2>
 <p>Regulatory confidence is the bridge between technical speed and routine clinical adoption. For ultra-rapid phenotypic AST, the market does not reward speed in isolation. Hospitals require evidence that a faster result remains aligned with reference methods (Essential Agreement and Categorical Agreement). QuickMIC's ~96% categorical agreement with broth microdilution provides the clinical trust required to displace legacy systems.</p>
 <p>Europe offers the most immediate pathway because QuickMIC is already IVDR-certified and positioned for routine implementation. The United States remains the largest single market opportunity, but navigating FDA bottlenecks increases the importance of building strong European clinical evidence before full U.S. commercialization.</p>
-<div class="insight-highlight">The competitive benchmark is not time alone—it is time multiplied by scale and trust. Gradientech's strongest defendable position is "Fastest actionable phenotypic AST for same-shift therapy optimization."</div>
 </div>
 ''',
     "5. Strategic Playbook & Execution Roadmap": r'''
@@ -260,6 +529,9 @@ CHAPTERS = {
 <h1>5. Strategic Playbook & Execution Roadmap</h1>
 <p>Converting technology into commercial scale requires executing a sequenced roadmap. Innovation alone does not displace entrenched incumbent monopolies; workflow integration and unassailable clinical health economics do. The growth trajectory of ultra-rapid AST will be determined by how effectively speed is translated into clinical action and repeat utilization.</p>
 <p>For Gradientech, the opportunity lies not in competing broadly across all microbiology workflows, but in owning high-acuity decision windows where timing directly alters therapy. QuickMIC succeeds when positioned as a clinical decision-timing platform—not just a faster laboratory analyzer.</p>
+
+[CHART_INJECTION]
+
 <h2>Where to Play & How to Win</h2>
 <table>
     <thead>
@@ -294,386 +566,62 @@ CHAPTERS = {
 </table>
 
 <h2>Execution Roadmap (2025–2035)</h2>
-<div style="border-left: 3px solid #5B0F2E; padding-left: 20px; margin-bottom: 20px;">
-    <h3 style="color: #431024; margin-bottom: 5px;">Phase 1: Validation & European Foothold (2025–2027)</h3>
-    <p>Establish reference centers across CE-IVDR territories. Generate pivotal clinical utility and ICU economic evidence (HEOR). Secure FDA pathway milestones. Focus strictly on direct-from-positive blood culture testing for Gram-negative sepsis to build trust.</p>
+<div style="border-left: 4px solid #5B0F2E; padding-left: 20px; margin-bottom: 20px; background: #fff; padding-top:10px; padding-bottom:10px;">
+    <h3 style="color: #431022; margin-top:0; margin-bottom: 5px;">Phase 1: Validation & European Foothold (2025–2027)</h3>
+    <p style="margin-bottom:0;">Establish reference centers across CE-IVDR territories. Generate pivotal clinical utility and ICU economic evidence (HEOR). Secure FDA pathway milestones. Focus strictly on direct-from-positive blood culture testing for Gram-negative sepsis to build trust.</p>
 </div>
-<div style="border-left: 3px solid #7A163F; padding-left: 20px; margin-bottom: 20px;">
-    <h3 style="color: #431024; margin-bottom: 5px;">Phase 2: Geographic & U.S. Expansion (2028–2031)</h3>
-    <p>Scale aggressive U.S. commercial entry post-FDA. Transition from early adopters to broader Tier 2 regional hospital penetration. Optimize distributor networks in APAC/MENA. Shift deeply into reagent rental business models to remove capital constraints.</p>
+<div style="border-left: 4px solid #C9A227; padding-left: 20px; margin-bottom: 20px; background: #fff; padding-top:10px; padding-bottom:10px;">
+    <h3 style="color: #431022; margin-top:0; margin-bottom: 5px;">Phase 2: Geographic & U.S. Expansion (2028–2031)</h3>
+    <p style="margin-bottom:0;">Scale aggressive U.S. commercial entry post-FDA. Transition from early adopters to broader Tier 2 regional hospital penetration. Optimize distributor networks in APAC/MENA. Shift deeply into reagent rental business models to remove capital constraints.</p>
 </div>
-<div style="border-left: 3px solid #E5E7EB; padding-left: 20px; margin-bottom: 20px;">
-    <h3 style="color: #431024; margin-bottom: 5px;">Phase 3: Category Leadership (2032–2035)</h3>
-    <p>Exploit standard-of-care shift in acute guidelines. Expand menu beyond Gram-negative BSI. Defend speed commoditization through panel breadth and continuous innovation. Deepen recurring consumable utilization to protect margins against incumbent bundles.</p>
+<div style="border-left: 4px solid #A45A7B; padding-left: 20px; margin-bottom: 20px; background: #fff; padding-top:10px; padding-bottom:10px;">
+    <h3 style="color: #431022; margin-top:0; margin-bottom: 5px;">Phase 3: Category Leadership (2032–2035)</h3>
+    <p style="margin-bottom:0;">Exploit standard-of-care shift in acute guidelines. Expand menu beyond Gram-negative BSI. Defend speed commoditization through panel breadth and continuous innovation. Deepen recurring consumable utilization to protect margins against incumbent bundles.</p>
 </div>
-<div class="insight-highlight">The commercial model is anchored in depth of adoption within selected accounts, rather than broad but shallow placement. Each installed system must translate into high-frequency utilization to unlock recurring consumable revenue.</div>
 </div>
 '''
 }
 
-# -----------------------------
-# CSS INJECTION
-# -----------------------------
-def inject_css(login_mode: bool = False) -> None:
-    sidebar_login_hide = "section[data-testid='stSidebar'] {display:none !important;}" if login_mode else ""
+
+# =========================
+# UI Component Helpers
+# =========================
+def card_metric(label: str, value: str, foot: str):
+    st.markdown(f'<div class="metric-card"><div class="metric-label">{label}</div><div class="metric-value">{value}</div><div class="metric-foot">{foot}</div></div>', unsafe_allow_html=True)
+
+def section_open(title: str, subtitle: str = ""):
     st.markdown(
-        f"""
-        <style>
-            #MainMenu {{visibility: hidden;}}
-            footer {{visibility: hidden;}}
-            header {{visibility: hidden;}}
-            [data-testid="stToolbar"] {{display:none !important;}}
-            [data-testid="stDecoration"] {{display:none !important;}}
-            .stDeployButton {{display:none !important;}}
-            button[data-testid="baseButton-headerNoPadding"] {{display:none !important;}}
-            {sidebar_login_hide}
-
-            /* Hide all standard secondary buttons so we don't see dev artifacts */
-            button[kind="secondary"] {{display:none;}}
-
-            /* Helper classes for Burgundy Theme inside content */
-            .text-burgundy-900 {{ color: {BURGUNDY_DARK} !important; }}
-            .text-burgundy-800 {{ color: {BURGUNDY} !important; }}
-            .text-burgundy-700 {{ color: {BURGUNDY_LIGHT} !important; }}
-            .bg-burgundy-50 {{ background-color: {BURGUNDY_SOFT} !important; }}
-            .text-emerald-700 {{ color: #047857 !important; }}
-            .text-emerald-600 {{ color: #059669 !important; }}
-
-            .stApp {{
-                background:
-                    radial-gradient(circle at top left, rgba(232,199,213,0.18), transparent 28%),
-                    linear-gradient(180deg, #FBF8F9 0%, #F5F1F3 100%);
-            }}
-
-            html, body, [class*="css"] {{
-                font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                color: {INK};
-            }}
-
-            section[data-testid="stSidebar"] {{
-                background: linear-gradient(180deg, #2E0A18 0%, #431024 100%);
-                border-right: 1px solid rgba(255,255,255,0.07);
-            }}
-
-            section[data-testid="stSidebar"] * {{
-                color: #FFF7FA !important;
-            }}
-
-            [data-testid="stSidebarNav"] {{
-                display:none !important;
-            }}
-
-            div[data-baseweb="select"] > div,
-            div[data-baseweb="input"] > div {{
-                border-radius: 8px !important;
-            }}
-
-            .main-shell {{
-                max-width: 1360px;
-                margin: 0 auto;
-                padding-bottom: 2rem;
-            }}
-
-            .hero-card {{
-                position: relative;
-                overflow: hidden;
-                background: linear-gradient(135deg, rgba(91,15,46,1) 0%, rgba(67,16,36,1) 72%);
-                border-radius: 28px;
-                padding: 34px 38px;
-                color: white;
-                box-shadow: 0 18px 40px rgba(91,15,46,0.22);
-                border: 1px solid rgba(255,255,255,0.08);
-                margin-bottom: 18px;
-            }}
-
-            .hero-card:before {{
-                content: "";
-                position: absolute;
-                right: -120px;
-                top: -80px;
-                width: 320px;
-                height: 320px;
-                background: radial-gradient(circle, rgba(255,255,255,0.10) 0%, transparent 65%);
-            }}
-
-            .hero-kicker {{
-                font-size: 12px;
-                font-weight: 800;
-                letter-spacing: 0.16em;
-                text-transform: uppercase;
-                color: #F6DDE6;
-                margin-bottom: 12px;
-            }}
-
-            .hero-title {{
-                font-size: 2.8rem;
-                line-height: 1.14;
-                font-weight: 800;
-                margin-bottom: 12px;
-            }}
-
-            .hero-subtitle {{
-                font-size: 1.15rem;
-                color: #F8E8EF;
-                max-width: 780px;
-            }}
-
-            .metric-card {{
-                background: rgba(255,255,255,0.96);
-                border: 1px solid {BORDER};
-                border-radius: 20px;
-                padding: 18px 18px 16px 18px;
-                min-height: 150px;
-                box-shadow: 0 10px 26px rgba(15,23,42,0.06);
-            }}
-
-            .metric-label {{
-                font-size: 12px;
-                text-transform: uppercase;
-                letter-spacing: 0.12em;
-                color: {SLATE_LIGHT};
-                font-weight: 800;
-                margin-bottom: 10px;
-            }}
-
-            .metric-value {{
-                font-size: 1.95rem;
-                line-height: 1.1;
-                color: {BURGUNDY};
-                font-weight: 800;
-                margin-bottom: 8px;
-            }}
-
-            .metric-note {{
-                font-size: 14px;
-                line-height: 1.55;
-                color: {SLATE};
-            }}
-
-            .sidebar-brand {{
-                background: rgba(255,255,255,0.06);
-                border: 1px solid rgba(255,255,255,0.08);
-                border-radius: 18px;
-                padding: 16px 16px 14px 16px;
-                margin-bottom: 10px;
-                box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-            }}
-
-            .sidebar-kicker {{
-                font-size: 11px;
-                font-weight: 800;
-                text-transform: uppercase;
-                letter-spacing: 0.12em;
-                color: #E9C7D5 !important;
-                margin-bottom: 6px;
-            }}
-
-            .sidebar-title {{
-                font-size: 20px;
-                line-height: 1.25;
-                font-weight: 800;
-                margin-bottom: 6px;
-            }}
-
-            .sidebar-sub {{
-                font-size: 12px;
-                color: #F1DDE5 !important;
-            }}
-
-            .sidebar-user {{
-                background: rgba(255,255,255,0.05);
-                border-radius: 14px;
-                padding: 12px 14px;
-                border: 1px solid rgba(255,255,255,0.06);
-                margin: 10px 0 14px;
-                color: #FDEEF5;
-                font-size: 13px;
-            }}
-
-            .section-title {{
-                font-size: 1.32rem;
-                font-weight: 800;
-                color: {INK};
-                margin: 0 0 0.35rem 0;
-            }}
-
-            .section-subtitle {{
-                color: {SLATE};
-                font-size: 0.96rem;
-                margin-bottom: 1rem;
-            }}
-
-            .report-shell {{
-                background: rgba(255,255,255,0.96);
-                border: 1px solid {BORDER};
-                border-radius: 24px;
-                box-shadow: 0 14px 32px rgba(15,23,42,0.06);
-                overflow: hidden;
-                margin-top: 16px;
-            }}
-
-            .report-banner {{
-                background: linear-gradient(135deg, #FFF6F9 0%, #FAEDF2 100%);
-                border-bottom: 1px solid #EED7E1;
-                padding: 18px 26px;
-            }}
-
-            .report-title {{
-                font-size: 1.6rem;
-                font-weight: 800;
-                color: {INK};
-            }}
-
-            .report-card {{
-                padding: 26px 30px 30px 30px;
-            }}
-
-            .chapter-content h1 {{
-                font-size: 2.15rem;
-                font-weight: 800;
-                color: #0F172A;
-                margin-top: 0;
-                margin-bottom: 1.5rem;
-                border-bottom: 2px solid #E2E8F0;
-                padding-bottom: 0.55rem;
-            }}
-
-            .chapter-content h2 {{
-                font-size: 1.5rem;
-                font-weight: 700;
-                color: #1E293B;
-                margin-top: 2rem;
-                margin-bottom: 1rem;
-            }}
-
-            .chapter-content p {{
-                margin-bottom: 1.25rem;
-                line-height: 1.8;
-                color: #334155;
-                text-align: justify;
-                font-size: 0.99rem;
-            }}
-
-            .chapter-content table {{
-                width: 100%;
-                border-collapse: collapse;
-                margin: 1.5rem 0;
-                background-color: #ffffff;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-                border-radius: 0.6rem;
-                overflow: hidden;
-                border: 1px solid #E2E8F0;
-            }}
-
-            .chapter-content th {{
-                background: linear-gradient(180deg, #5B0F2E 0%, #431024 100%);
-                color: #ffffff;
-                font-weight: 700;
-                text-align: left;
-                padding: 0.85rem 1rem;
-                border-bottom: 2px solid #6E2341;
-                font-size: 0.88rem;
-            }}
-
-            .chapter-content td {{
-                padding: 0.8rem 1rem;
-                border-bottom: 1px solid #E2E8F0;
-                color: #334155;
-                font-size: 0.88rem;
-                vertical-align: top;
-            }}
-
-            .chapter-content tr:last-child td {{
-                border-bottom: none;
-            }}
-
-            .chapter-content tr:hover td {{
-                background-color: #FBF5F7;
-            }}
-
-            .insight-highlight {{
-                background-color: #FAF2F5;
-                border-left: 4px solid #8A1E4F;
-                padding: 1rem 1.25rem;
-                margin: 1.5rem 0;
-                font-style: italic;
-                color: #7A163F;
-                font-weight: 600;
-                border-radius: 0 0.5rem 0.5rem 0;
-            }}
-
-            .post-table-insight {{
-                background-color: #FCFAFB;
-                border: 1px solid #E8DCE2;
-                padding: 1rem;
-                margin-top: -1rem;
-                margin-bottom: 1.5rem;
-                font-size: 0.88rem;
-                color: #5B4B54;
-                border-radius: 0 0 0.5rem 0.5rem;
-            }}
-
-            [data-testid="stForm"] {{
-                border: none !important;
-                padding: 0 !important;
-            }}
-
-            [data-testid="stTextInput"] label {{
-                font-weight: 700 !important;
-                color: {INK} !important;
-            }}
-            
-            .stButton > button {{
-                background: linear-gradient(135deg, {BURGUNDY} 0%, {BURGUNDY_DARK} 100%);
-                color: white;
-                border: none;
-                border-radius: 14px;
-                padding: 0.7rem 1rem;
-                font-weight: 700;
-                box-shadow: 0 10px 20px rgba(91,15,46,0.18);
-            }}
-
-            .stButton > button:hover {{
-                filter: brightness(1.04);
-                transform: translateY(-1px);
-            }}
-        </style>
-        """,
+        f'<div class="section-card"><div class="section-title">{title}</div><div class="section-sub">{subtitle}</div>',
         unsafe_allow_html=True,
     )
 
-# -----------------------------
-# HELPERS & CHARTS
-# -----------------------------
-def metric_card(label: str, value: str, note: str) -> None:
-    st.markdown(
-        f"""
-        <div class="metric-card">
-            <div class="metric-label">{label}</div>
-            <div class="metric-value">{value}</div>
-            <div class="metric-note">{note}</div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+def section_close():
+    st.markdown("</div>", unsafe_allow_html=True)
 
-def section_intro(title: str, subtitle: str) -> None:
-    st.markdown(f'<div class="section-title">{title}</div><div class="section-subtitle">{subtitle}</div>', unsafe_allow_html=True)
-
-def style_plot(fig: go.Figure, title: str, height: int = 360) -> go.Figure:
+def chart_theme(fig):
     fig.update_layout(
-        title=dict(text=title, x=0, font=dict(size=16, color=INK)),
-        paper_bgcolor="white",
-        plot_bgcolor="white",
-        font=dict(family="Inter, sans-serif", color=SLATE),
-        margin=dict(l=10, r=10, t=50, b=10),
-        height=height,
-        legend=dict(orientation="h", yanchor="bottom", y=1.05, xanchor="right", x=1),
+        paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(color=INK, family="'Plus Jakarta Sans', sans-serif"),
+        margin=dict(l=10, r=10, t=40, b=10), legend_title_text="",
+        legend=dict(orientation="h", yanchor="bottom", y=1.05, x=0),
+        hoverlabel=dict(bgcolor="white", font_size=13, font_family="'Plus Jakarta Sans', sans-serif", bordercolor=BORDER),
     )
-    fig.update_xaxes(showgrid=False, zeroline=False)
-    fig.update_yaxes(gridcolor=BORDER, zeroline=False)
+    fig.update_xaxes(showgrid=False, linecolor="rgba(0,0,0,0.05)", tickfont=dict(size=11, color=MUTED))
+    fig.update_yaxes(gridcolor="rgba(91,15,46,0.04)", zeroline=False, tickfont=dict(size=11, color=MUTED))
     return fig
 
+def brand_sidebar():
+    st.sidebar.markdown(f'<div class="smr-brand"><h1 style="color:{BURGUNDY}; margin:0; font-size:1.1rem; font-weight:800; letter-spacing:-0.02em; line-height:1.2;">Strategic Market Research</h1><p style="color:{MUTED}; margin:4px 0 0 0; font-size:0.82rem; font-weight:500;">Ultra-Rapid Phenotypic AST<br>Preview Dashboard</p></div>', unsafe_allow_html=True)
+
+def page_header(title: str, subtitle: str):
+    st.markdown(f'<div class="hero"><div class="hero-head"><h2>{title}</h2></div><p style="font-size: 1rem; color: rgba(255,255,255,0.9); margin:0; max-width:900px; line-height:1.5;">{subtitle}</p></div>', unsafe_allow_html=True)
+
+def page_footer():
+    st.markdown(f'<div style="margin-top:30px; text-align:center; padding: 24px; color:{MUTED}; font-size:0.8rem; border-top: 1px solid rgba(0,0,0,0.06);"><strong>Confidential & Proprietary</strong> &copy; 2026 Strategic Market Research<br>To access the full report: info@strategicmarketresearch.com</div>', unsafe_allow_html=True)
+
+# =========================
+# Chart Rendering Functions
+# =========================
 def render_market_layers_chart():
     years = ["2025", "2030", "2035"]
     tam = [4865.0, 6791.6, 9481.1]
@@ -681,14 +629,13 @@ def render_market_layers_chart():
     som = [82.7, 169.3, 264.5]
 
     fig = go.Figure()
-    fig.add_trace(go.Bar(x=years, y=tam, name='TAM (Broad Micro)', marker_color=BORDER))
-    fig.add_trace(go.Bar(x=years, y=sam, name='SAM (Adv AST)', marker_color=ROSE))
+    fig.add_trace(go.Bar(x=years, y=tam, name='TAM (Broad Micro)', marker_color=ROSE))
+    fig.add_trace(go.Bar(x=years, y=sam, name='SAM (Adv AST)', marker_color=BURGUNDY_SOFT))
     fig.add_trace(go.Bar(x=years, y=som, name='SOM (Ultra-Rapid)', marker_color=BURGUNDY))
 
-    fig.update_layout(barmode='group')
+    fig.update_layout(barmode='group', title="Market Layers Expansion ($Mn)")
     fig.update_yaxes(title_text="Revenue ($Mn)")
-    style_plot(fig, "Market Layers Expansion ($Mn)")
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(chart_theme(fig), use_container_width=True, config={"displayModeBar": False})
 
 def render_regional_chart():
     years = ["2025", "2030", "2035"]
@@ -699,18 +646,18 @@ def render_regional_chart():
 
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=years, y=na, name='North America', mode='lines+markers', line=dict(color=BURGUNDY, width=3)))
-    fig.add_trace(go.Scatter(x=years, y=eu, name='Europe', mode='lines+markers', line=dict(color=BURGUNDY_LIGHT, width=3)))
-    fig.add_trace(go.Scatter(x=years, y=apac, name='Asia Pacific', mode='lines+markers', line=dict(color="#B07A92", width=3)))
+    fig.add_trace(go.Scatter(x=years, y=eu, name='Europe', mode='lines+markers', line=dict(color=BURGUNDY_MID, width=3)))
+    fig.add_trace(go.Scatter(x=years, y=apac, name='Asia Pacific', mode='lines+markers', line=dict(color=GOLD, width=3)))
     fig.add_trace(go.Scatter(x=years, y=row, name='Rest of World', mode='lines+markers', line=dict(color=SLATE_LIGHT, width=3)))
 
+    fig.update_layout(title="Regional SOM Growth Forecast")
     fig.update_yaxes(title_text="Revenue ($Mn)")
-    style_plot(fig, "Regional SOM Growth Forecast")
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(chart_theme(fig), use_container_width=True, config={"displayModeBar": False})
 
 def render_speed_chart():
     labels = ['Conventional', 'Pheno', 'ASTar', 'VITEK REVEAL', 'dRAST', 'QuickMIC']
     times = [24, 7, 6, 5.75, 4, 3]
-    colors = [SLATE_LIGHT, '#f97316', '#f59e0b', '#fbbf24', '#B07A92', BURGUNDY]
+    colors = [SLATE_LIGHT, '#f97316', '#f59e0b', '#fbbf24', BURGUNDY_SOFT, BURGUNDY]
 
     fig = go.Figure(go.Bar(
         x=times, 
@@ -721,16 +668,14 @@ def render_speed_chart():
         textposition='outside'
     ))
     
+    fig.update_layout(title="Time-to-Result Benchmarking", showlegend=False)
     fig.update_xaxes(title_text="Hours to Result", range=[0, 26])
-    
-    style_plot(fig, "Time-to-Result Benchmarking")
-    fig.update_layout(showlegend=False)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(chart_theme(fig), use_container_width=True, config={"displayModeBar": False})
 
 def render_pricing_chart():
     labels = ['QuickMIC', 'Pheno', 'ASTar', 'REVEAL', 'dRAST', 'Conventional']
     prices = [100, 125, 105, 105, 95, 35]
-    colors = [BURGUNDY, SLATE, SLATE, SLATE, SLATE, BORDER]
+    colors = [BURGUNDY, SLATE, SLATE, SLATE, SLATE, ROSE]
 
     fig = go.Figure(go.Bar(
         x=labels, 
@@ -739,19 +684,18 @@ def render_pricing_chart():
         text=[f"${p}" for p in prices],
         textposition='auto'
     ))
+    fig.update_layout(title="Estimated Consumable Pricing Power", showlegend=False)
     fig.update_yaxes(title_text="Consumable ASP ($)")
-    style_plot(fig, "Estimated Consumable Pricing Power")
-    fig.update_layout(showlegend=False)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(chart_theme(fig), use_container_width=True, config={"displayModeBar": False})
 
 def render_competitor_scatter():
     comps = [
         {"name": "QuickMIC", "time": 3, "prem": 9, "color": BURGUNDY},
-        {"name": "dRAST", "time": 4, "prem": 8, "color": BURGUNDY_LIGHT},
+        {"name": "dRAST", "time": 4, "prem": 8, "color": BURGUNDY_MID},
         {"name": "VITEK REVEAL", "time": 5.75, "prem": 9.5, "color": SLATE},
         {"name": "ASTar", "time": 6, "prem": 7.5, "color": SLATE_LIGHT},
         {"name": "Pheno", "time": 7, "prem": 8, "color": "#f97316"},
-        {"name": "Conventional", "time": 24, "prem": 2, "color": BORDER},
+        {"name": "Conventional", "time": 24, "prem": 2, "color": ROSE},
     ]
 
     fig = go.Figure()
@@ -765,202 +709,135 @@ def render_competitor_scatter():
             marker=dict(size=14, color=c["color"])
         ))
     
+    fig.update_layout(title="Speed vs. Premium Positioning", showlegend=False)
     fig.update_xaxes(title_text="Time to Result (Hours) ← Closer to 0 is Better", autorange="reversed", range=[26, -2])
     fig.update_yaxes(title_text="Premium Pricing Power (Score)", range=[0, 11])
-    style_plot(fig, "Speed vs. Premium Positioning")
-    fig.update_layout(showlegend=False)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(chart_theme(fig), use_container_width=True, config={"displayModeBar": False})
 
-# -----------------------------
-# PAGE RENDERERS
-# -----------------------------
-def render_hero() -> None:
-    st.markdown(
-        f"""
-        <div class="hero-card">
-            <div class="hero-kicker">Strategic Market Research</div>
-            <div class="hero-title">Global Ultra-Rapid Phenotypic AST Market (2025–2035)</div>
-            <div class="hero-subtitle">Prepared for {CLIENT_NAME}. Demand expansion, speed economics, geographic scaling, and competitive benchmarking for ultra-rapid workflows.</div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
 
-def render_overview() -> None:
-    render_hero()
-
-    c1, c2, c3, c4 = st.columns(4)
-    with c1:
-        metric_card("TAM 2035 (Broad Micro)", QUICK_METRICS["TAM 2035 (Broad Micro)"], "Total AST Ecosystem")
-    with c2:
-        metric_card("SOM 2035 (Ultra-Rapid)", QUICK_METRICS["SOM 2035 (Ultra-Rapid)"], "Core Market Opportunity")
-    with c3:
-        metric_card("SOM CAGR (25-35)", QUICK_METRICS["SOM CAGR (25-35)"], "High-growth trajectory")
-    with c4:
-        metric_card("Clinical Threshold", QUICK_METRICS["Clinical Threshold"], "Required for same-shift change")
-
-    st.markdown("<br>", unsafe_allow_html=True)
-    section_intro("Dashboard Overview", "Use the sidebar to explore the full 5-chapter boardroom report covering market sizing, competitive dynamics, and the commercial playbook.")
-
-    colA, colB = st.columns([1, 1])
-    with colA:
-        render_market_layers_chart()
-    with colB:
-        render_speed_chart()
-
-def render_prev_next(options: list[str], current: str) -> None:
-    idx = options.index(current)
-    col1, col2 = st.columns([1, 1])
+# =========================
+# Main app logic & Security Gate
+# =========================
+def check_access():
+    expected_password = str(st.secrets.get("ACCESS_CODE", PRIMARY_PASSWORD)).strip()
     
-    with col1:
-        if idx > 0:
-            if st.button("⬅ Previous"):
-                st.session_state["nav_choice"] = options[idx - 1]
-                st.rerun()
+    if "authenticated" not in st.session_state:
+        st.session_state.authenticated = False
 
-    with col2:
-        if idx < len(options) - 1:
-            if st.button("Next ➡"):
-                st.session_state["nav_choice"] = options[idx + 1]
-                st.rerun()
+    if st.session_state.authenticated:
+        return True
 
-def render_chapter_page(title: str, nav_options: list[str]) -> None:
-    st.markdown(
-        f"""
-        <div class="report-shell">
-            <div class="report-banner">
-                <div class="report-title">{title}</div>
-            </div>
-            <div class="report-card">
-        """,
-        unsafe_allow_html=True,
-    )
-    
-    html_content = CHAPTERS[title]
-    
-    # CRITICAL FIX: Splitting by the exact string marker
-    parts = html_content.split("")
-    
-    st.markdown(parts[0], unsafe_allow_html=True)
-    
-    if len(parts) > 1:
-        # Render the specific inline chart based on chapter
-        if title.startswith("1. "):
-            render_market_layers_chart()
-        elif title.startswith("2. "):
-            render_regional_chart()
-        elif title.startswith("3. "):
-            render_speed_chart()
-        elif title.startswith("4. "):
-            colA, colB = st.columns(2)
-            with colA:
-                render_competitor_scatter()
-            with colB:
-                render_pricing_chart()
+    brand_sidebar()
 
-        st.markdown(parts[1], unsafe_allow_html=True)
-
-    st.markdown("</div></div><br>", unsafe_allow_html=True)
-    render_prev_next(nav_options, title)
-
-    st.markdown("""
-    ---
-    **Confidential & Proprietary** © 2026 Strategic Market Research  
-
-    To access the full report:  
-    📩 info@strategicmarketresearch.com
-    """)
-
-def render_login() -> None:
-    inject_css(login_mode=True)
-    
-    _, col, _ = st.columns([1, 1.2, 1])
-    
-    with col:
-        st.markdown("<div style='margin-top: 120px;'></div>", unsafe_allow_html=True)
+    with st.sidebar:
+        st.markdown("<h3 style='color:var(--ink); font-weight:700; margin-bottom:12px;'>🔐 Access Login</h3>", unsafe_allow_html=True)
         
-        with st.container(border=True):
-            st.markdown(f"""
-                <h2 style='text-align: center; color: {BURGUNDY}; padding-bottom: 15px;'>
-                    SMR BOARDROOM ACCESS
-                </h2>
-            """, unsafe_allow_html=True)
-            
-            name = st.text_input("Name", placeholder="Enter your name")
-            password = st.text_input("Password", type="password", placeholder="Enter password")
-            
+        with st.form("login_form"):
+            name = st.text_input("Name*")
+            password = st.text_input("Access Code*", type="password")
             st.markdown("<br>", unsafe_allow_html=True)
-            
-            if st.button("Enter Dashboard", type="primary", use_container_width=True):
-                if password == PRIMARY_PASSWORD:
-                    st.session_state["authenticated"] = True
-                    st.session_state["visitor_name"] = name.strip()
-                    st.session_state["nav_choice"] = "Overview"
-                    st.rerun()
-                else:
-                    st.error("Incorrect password")
+            enter = st.form_submit_button("Secure Login", use_container_width=True)
 
-# -----------------------------
-# SESSION STATE (SAFE INIT)
-# -----------------------------
-if "authenticated" not in st.session_state:
-    st.session_state["authenticated"] = False
-if "visitor_name" not in st.session_state:
-    st.session_state["visitor_name"] = ""
-if "nav_choice" not in st.session_state:
-    st.session_state["nav_choice"] = "Overview"
+    if enter:
+        clean_name = name.strip()
+        clean_pass = password.strip()
+        
+        if not clean_name or not clean_pass:
+            st.sidebar.warning("⚠️ Please fill in your Name and Access Code.")
+        elif clean_pass != expected_password:
+            st.sidebar.error("❌ Invalid Access Code. Please try again.")
+        else:
+            st.session_state.authenticated = True
+            st.session_state.viewer_name = clean_name
+            st.rerun()
 
-# -----------------------------
-# APP ROUTING
-# -----------------------------
-if not st.session_state["authenticated"]:
-    render_login()
-    st.stop()
+    if not st.session_state.authenticated:
+        st.markdown(
+            f"""
+            <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:60vh;">
+                <h2 style='color:{BURGUNDY}; font-weight:800; font-size:2.4rem;'>Dashboard Secured</h2>
+                <p style='color:{MUTED}; font-size:1.1rem;'>Please use the sidebar to authenticate and load the market view.</p>
+            </div>
+            """, unsafe_allow_html=True)
+        st.stop()
+    return True
 
-inject_css(login_mode=False)
+check_access()
 
-nav_options = ["Overview"] + list(CHAPTERS.keys())
+# =========================
+# Authenticated Shell
+# =========================
+brand_sidebar()
 
-st.sidebar.markdown(
-    f"""
-    <div class="sidebar-brand">
-        <div class="sidebar-kicker">Strategic Market Research</div>
-        <div class="sidebar-title">Ultra-Rapid AST Market</div>
-        <div class="sidebar-sub">Client: {CLIENT_NAME}</div>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+# Identify User
+viewer_name = st.session_state.get("viewer_name", "Guest")
+st.sidebar.markdown(f'<div class="viewer-chip">Verified: {viewer_name} | {CLIENT_NAME}</div>', unsafe_allow_html=True)
 
-st.sidebar.markdown(
-    f"""
-    <div class="sidebar-user">
-        Viewing as <strong>{st.session_state["visitor_name"]}</strong><br>
-        Premium Boardroom Briefing
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+st.sidebar.markdown("<br>", unsafe_allow_html=True)
 
-st.sidebar.radio(
-    "Navigate",
-    nav_options,
-    key="nav_choice",
-    label_visibility="collapsed",
-)
+nav_options = ["Executive Overview"] + list(CHAPTERS.keys())
+page = st.sidebar.radio("Navigate", nav_options, label_visibility="collapsed")
 
-st.sidebar.caption("Confidential & Proprietary")
-st.sidebar.caption("© 2026 Strategic Market Research")
-
-if st.sidebar.button("Logout", type="primary", use_container_width=True):
-    st.session_state["authenticated"] = False
-    st.session_state["visitor_name"] = ""
-    st.session_state["nav_choice"] = "Overview"
+st.sidebar.markdown("---")
+if st.sidebar.button("End Session", use_container_width=True):
+    st.session_state.authenticated = False
+    st.session_state.viewer_name = ""
     st.rerun()
 
 st.markdown('<div class="main-shell">', unsafe_allow_html=True)
-if st.session_state["nav_choice"] == "Overview":
-    render_overview()
+
+# Router
+if page == "Executive Overview":
+    page_header("Executive Overview & Metrics", f"Prepared for {CLIENT_NAME}. Demand expansion, speed economics, geographic scaling, and competitive benchmarking.")
+    
+    c1, c2, c3, c4 = st.columns(4)
+    with c1: card_metric("TAM 2035", QUICK_METRICS["TAM 2035 (Broad Micro)"], "Total AST Ecosystem")
+    with c2: card_metric("SOM 2035", QUICK_METRICS["SOM 2035 (Ultra-Rapid)"], "Core Market Opportunity")
+    with c3: card_metric("SOM CAGR", QUICK_METRICS["SOM CAGR (25-35)"], "High-growth trajectory")
+    with c4: card_metric("Threshold", QUICK_METRICS["Clinical Threshold"], "Required for same-shift change")
+
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    colA, colB = st.columns([1, 1])
+    with colA:
+        section_open("Market Trajectory", "SOM grows significantly faster than broader TAM.")
+        render_market_layers_chart()
+        section_close()
+    with colB:
+        section_open("Time-to-Result Economics", "Only sub-4hr TAT unlocks peak pricing power.")
+        render_speed_chart()
+        section_close()
+        
+    page_footer()
+
 else:
-    render_chapter_page(st.session_state["nav_choice"], nav_options)
+    # Safely Split Content and Render Chapter
+    html_content = CHAPTERS[page]
+    parts = html_content.split("[CHART_INJECTION]")
+    
+    section_open(page.split(". ")[1] if ". " in page else page, "")
+    
+    st.markdown(parts[0], unsafe_allow_html=True)
+    
+    # If the chart injection marker was found, render the appropriate chart
+    if len(parts) > 1:
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        if "1. " in page:
+            render_market_layers_chart()
+        elif "2. " in page:
+            render_regional_chart()
+        elif "3. " in page:
+            render_speed_chart()
+        elif "4. " in page:
+            c1, c2 = st.columns(2)
+            with c1: render_competitor_scatter()
+            with c2: render_pricing_chart()
+            
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown(parts[1], unsafe_allow_html=True)
+        
+    section_close()
+    page_footer()
+
 st.markdown('</div>', unsafe_allow_html=True)
