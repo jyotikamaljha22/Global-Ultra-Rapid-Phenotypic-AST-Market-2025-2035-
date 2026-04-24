@@ -2,13 +2,12 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 
 # =========================
 # Page config
 # =========================
 st.set_page_config(
-    page_title="Ultra-Rapid Phenotypic AST Market | Strategic Dashboard",
+    page_title="Strategic Market Research | Ultra-Rapid AST",
     page_icon="🔬",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -235,10 +234,10 @@ st.markdown(
     }}
     .section-title {{
       display: flex; justify-content: space-between; align-items: center;
-      font-size: 1.4rem; font-weight: 800; color: {BURGUNDY}; margin-bottom: 6px; letter-spacing: -0.01em;
+      font-size: 1.2rem; font-weight: 800; color: {BURGUNDY}; margin-bottom: 6px; letter-spacing: -0.01em;
     }}
     .section-sub {{
-      color: {MUTED}; font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5;
+      color: {MUTED}; font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5;
     }}
     
     .insight-box {{
@@ -297,18 +296,51 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+
 # =========================
-# DATA / CONTENT (HARDCODED CHART_INJECTION TAGS)
+# DATA / CONTENT Dictionaries
 # =========================
-CHAPTERS = {
+CHAPTERS_TOP = {
     "1. Executive Overview & Strategic Snapshot": r'''
 <div class="chapter-content">
 <h1>1. Executive Overview & Strategic Snapshot</h1>
 <p>Market estimates indicate a structural paradigm shift in microbiology, transitioning from routine overnight profiling toward time-critical, acute-care decision support where speed creates measurable clinical and economic value.</p>
 <p>The global antimicrobial susceptibility testing (AST) market is vast, but the true strategic value lies in carving out the acute-care, speed-sensitive segment. The opportunity narrows from broad routine diagnostics to the high-premium, ultra-rapid phenotypic AST sector where platforms like Gradientech QuickMIC generate actionable clinical value. The data demonstrates a critical shift from legacy workflow automation to time-critical decision support in severe infections.</p>
+</div>
+''',
+    "2. Market Sizing, Geography & Epidemiology": r'''
+<div class="chapter-content">
+<h1>2. Market Sizing, Geography & Epidemiology</h1>
+<p>The geographic distribution of ultra-rapid AST demand is driven by clinical workflow maturity and willingness to pay for time, rather than population size alone. Markets where blood culture utilization is high, microbiology labs operate on extended hours, and stewardship programs are embedded into care pathways generate disproportionately higher revenue per case.</p>
+<p>This results in a clear prioritization pattern: United States and Western Europe yield the highest near-term monetization; select Asia-Pacific markets offer strong expansion potential; and emerging markets provide long-term volume upside with slower premium adoption. Revenue concentration follows clinical readiness—not epidemiological scale.</p>
+</div>
+''',
+    "3. Speed Economics & Clinical Thresholds": r'''
+<div class="chapter-content">
+<h1>3. Speed Economics & Clinical Thresholds</h1>
+<p>The economic value of ultra-rapid AST is not determined by speed alone, but by whether results arrive early enough to influence therapy before the next clinical decision point. In sepsis and bloodstream infections, treatment is initiated empirically, and the first opportunity to refine that decision occurs within a narrow window—typically during the next physician round, ICU review, or stewardship intervention.</p>
+<p>Diagnostics that fall outside this window primarily confirm therapy. Those that fall within it can directly change escalation, de-escalation, or narrowing decisions, creating measurable clinical and financial impact. Speed creates value only when it aligns with clinical action—not when it merely shortens laboratory time.</p>
+</div>
+''',
+    "4. Competitive Landscape & Positioning": r'''
+<div class="chapter-content">
+<h1>4. Competitive Landscape & Positioning</h1>
+<p>The rapid AST landscape is evolving around a central constraint: speed is valuable only when it preserves clinical trust. While multiple technological approaches are accelerating turnaround time, the market continues to prioritize phenotypic credibility and true MIC-linked interpretability as the basis for therapy decisions. The competitive battlefield is fragmented but consolidating around companies that can deliver True MIC results directly from positive blood cultures.</p>
+<p>This section benchmarks Gradientech QuickMIC against direct challengers (QuantaMatrix, Q-linea, Accelerate) and incumbent giants (bioMérieux, BD). Market estimates indicate that true Minimum Inhibitory Concentration (MIC) output combined with ≤4 hour speed commands maximum pricing power.</p>
+</div>
+''',
+    "5. Strategic Playbook & Execution Roadmap": r'''
+<div class="chapter-content">
+<h1>5. Strategic Playbook & Execution Roadmap</h1>
+<p>Converting technology into commercial scale requires executing a sequenced roadmap. Innovation alone does not displace entrenched incumbent monopolies; workflow integration and unassailable clinical health economics do. The growth trajectory of ultra-rapid AST will be determined by how effectively speed is translated into clinical action and repeat utilization.</p>
+<p>For Gradientech, the opportunity lies not in competing broadly across all microbiology workflows, but in owning high-acuity decision windows where timing directly alters therapy. QuickMIC succeeds when positioned as a clinical decision-timing platform—not just a faster laboratory analyzer.</p>
+</div>
+'''
+}
 
-[CHART_INJECTION]
-
+CHAPTERS_BOTTOM = {
+    "1. Executive Overview & Strategic Snapshot": r'''
+<div class="chapter-content">
 <h2>Global TAM–SAM–SOM Forecast Definition ($Mn)</h2>
 <table>
     <thead>
@@ -354,12 +386,6 @@ CHAPTERS = {
 ''',
     "2. Market Sizing, Geography & Epidemiology": r'''
 <div class="chapter-content">
-<h1>2. Market Sizing, Geography & Epidemiology</h1>
-<p>The geographic distribution of ultra-rapid AST demand is driven by clinical workflow maturity and willingness to pay for time, rather than population size alone. Markets where blood culture utilization is high, microbiology labs operate on extended hours, and stewardship programs are embedded into care pathways generate disproportionately higher revenue per case.</p>
-<p>This results in a clear prioritization pattern: United States and Western Europe yield the highest near-term monetization; select Asia-Pacific markets offer strong expansion potential; and emerging markets provide long-term volume upside with slower premium adoption. Revenue concentration follows clinical readiness—not epidemiological scale.</p>
-
-[CHART_INJECTION]
-
 <h2>Country-Level Speed-Sensitive Opportunity</h2>
 <table>
     <thead>
@@ -407,12 +433,6 @@ CHAPTERS = {
 ''',
     "3. Speed Economics & Clinical Thresholds": r'''
 <div class="chapter-content">
-<h1>3. Speed Economics & Clinical Thresholds</h1>
-<p>The economic value of ultra-rapid AST is not determined by speed alone, but by whether results arrive early enough to influence therapy before the next clinical decision point. In sepsis and bloodstream infections, treatment is initiated empirically, and the first opportunity to refine that decision occurs within a narrow window—typically during the next physician round, ICU review, or stewardship intervention.</p>
-<p>Diagnostics that fall outside this window primarily confirm therapy. Those that fall within it can directly change escalation, de-escalation, or narrowing decisions, creating measurable clinical and financial impact. Speed creates value only when it aligns with clinical action—not when it merely shortens laboratory time.</p>
-
-[CHART_INJECTION]
-
 <h2>Speed Threshold & Clinical Impact</h2>
 <table>
     <thead>
@@ -456,12 +476,6 @@ CHAPTERS = {
 ''',
     "4. Competitive Landscape & Positioning": r'''
 <div class="chapter-content">
-<h1>4. Competitive Landscape & Positioning</h1>
-<p>The rapid AST landscape is evolving around a central constraint: speed is valuable only when it preserves clinical trust. While multiple technological approaches are accelerating turnaround time, the market continues to prioritize phenotypic credibility and true MIC-linked interpretability as the basis for therapy decisions. The competitive battlefield is fragmented but consolidating around companies that can deliver True MIC results directly from positive blood cultures.</p>
-<p>This section benchmarks Gradientech QuickMIC against direct challengers (QuantaMatrix, Q-linea, Accelerate) and incumbent giants (bioMérieux, BD). Market estimates indicate that true Minimum Inhibitory Concentration (MIC) output combined with ≤4 hour speed commands maximum pricing power.</p>
-
-[CHART_INJECTION]
-
 <h2>Device Benchmarking — Core Competitive Set</h2>
 <table>
     <thead>
@@ -526,12 +540,6 @@ CHAPTERS = {
 ''',
     "5. Strategic Playbook & Execution Roadmap": r'''
 <div class="chapter-content">
-<h1>5. Strategic Playbook & Execution Roadmap</h1>
-<p>Converting technology into commercial scale requires executing a sequenced roadmap. Innovation alone does not displace entrenched incumbent monopolies; workflow integration and unassailable clinical health economics do. The growth trajectory of ultra-rapid AST will be determined by how effectively speed is translated into clinical action and repeat utilization.</p>
-<p>For Gradientech, the opportunity lies not in competing broadly across all microbiology workflows, but in owning high-acuity decision windows where timing directly alters therapy. QuickMIC succeeds when positioned as a clinical decision-timing platform—not just a faster laboratory analyzer.</p>
-
-[CHART_INJECTION]
-
 <h2>Where to Play & How to Win</h2>
 <table>
     <thead>
@@ -566,17 +574,17 @@ CHAPTERS = {
 </table>
 
 <h2>Execution Roadmap (2025–2035)</h2>
-<div style="border-left: 4px solid #5B0F2E; padding-left: 20px; margin-bottom: 20px; background: #fff; padding-top:10px; padding-bottom:10px;">
+<div style="border-left: 4px solid #5B0F2E; padding-left: 20px; margin-bottom: 20px; background: #fff; padding-top:10px; padding-bottom:10px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
     <h3 style="color: #431022; margin-top:0; margin-bottom: 5px;">Phase 1: Validation & European Foothold (2025–2027)</h3>
-    <p style="margin-bottom:0;">Establish reference centers across CE-IVDR territories. Generate pivotal clinical utility and ICU economic evidence (HEOR). Secure FDA pathway milestones. Focus strictly on direct-from-positive blood culture testing for Gram-negative sepsis to build trust.</p>
+    <p style="margin-bottom:0; font-size:0.9rem;">Establish reference centers across CE-IVDR territories. Generate pivotal clinical utility and ICU economic evidence (HEOR). Secure FDA pathway milestones. Focus strictly on direct-from-positive blood culture testing for Gram-negative sepsis to build trust.</p>
 </div>
-<div style="border-left: 4px solid #C9A227; padding-left: 20px; margin-bottom: 20px; background: #fff; padding-top:10px; padding-bottom:10px;">
+<div style="border-left: 4px solid #C9A227; padding-left: 20px; margin-bottom: 20px; background: #fff; padding-top:10px; padding-bottom:10px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
     <h3 style="color: #431022; margin-top:0; margin-bottom: 5px;">Phase 2: Geographic & U.S. Expansion (2028–2031)</h3>
-    <p style="margin-bottom:0;">Scale aggressive U.S. commercial entry post-FDA. Transition from early adopters to broader Tier 2 regional hospital penetration. Optimize distributor networks in APAC/MENA. Shift deeply into reagent rental business models to remove capital constraints.</p>
+    <p style="margin-bottom:0; font-size:0.9rem;">Scale aggressive U.S. commercial entry post-FDA. Transition from early adopters to broader Tier 2 regional hospital penetration. Optimize distributor networks in APAC/MENA. Shift deeply into reagent rental business models to remove capital constraints.</p>
 </div>
-<div style="border-left: 4px solid #A45A7B; padding-left: 20px; margin-bottom: 20px; background: #fff; padding-top:10px; padding-bottom:10px;">
-    <h3 style="color: #431022; margin-top:0; margin-bottom: 5px;">Phase 3: Category Leadership (2032–2035)</h3>
-    <p style="margin-bottom:0;">Exploit standard-of-care shift in acute guidelines. Expand menu beyond Gram-negative BSI. Defend speed commoditization through panel breadth and continuous innovation. Deepen recurring consumable utilization to protect margins against incumbent bundles.</p>
+<div style="border-left: 4px solid #A45A7B; padding-left: 20px; margin-bottom: 20px; background: #fff; padding-top:10px; padding-bottom:10px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+    <h3 style="color: #431022; margin-bottom: 5px;">Phase 3: Category Leadership (2032–2035)</h3>
+    <p style="margin-bottom:0; font-size:0.9rem;">Exploit standard-of-care shift in acute guidelines. Expand menu beyond Gram-negative BSI. Defend speed commoditization through panel breadth and continuous innovation. Deepen recurring consumable utilization to protect margins against incumbent bundles.</p>
 </div>
 </div>
 '''
@@ -598,12 +606,15 @@ def section_open(title: str, subtitle: str = ""):
 def section_close():
     st.markdown("</div>", unsafe_allow_html=True)
 
-def chart_theme(fig):
+def apply_theme(fig: go.Figure, title: str) -> go.Figure:
     fig.update_layout(
-        paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
+        title=dict(text=title, x=0, font=dict(size=16, color=INK)),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         font=dict(color=INK, family="'Plus Jakarta Sans', sans-serif"),
-        margin=dict(l=10, r=10, t=40, b=10), legend_title_text="",
-        legend=dict(orientation="h", yanchor="bottom", y=1.05, x=0),
+        margin=dict(l=10, r=10, t=50, b=10),
+        legend_title_text="",
+        legend=dict(orientation="h", yanchor="bottom", y=1.05, xanchor="right", x=1),
         hoverlabel=dict(bgcolor="white", font_size=13, font_family="'Plus Jakarta Sans', sans-serif", bordercolor=BORDER),
     )
     fig.update_xaxes(showgrid=False, linecolor="rgba(0,0,0,0.05)", tickfont=dict(size=11, color=MUTED))
@@ -633,9 +644,9 @@ def render_market_layers_chart():
     fig.add_trace(go.Bar(x=years, y=sam, name='SAM (Adv AST)', marker_color=BURGUNDY_SOFT))
     fig.add_trace(go.Bar(x=years, y=som, name='SOM (Ultra-Rapid)', marker_color=BURGUNDY))
 
-    fig.update_layout(barmode='group', title="Market Layers Expansion ($Mn)")
+    fig.update_layout(barmode='group')
     fig.update_yaxes(title_text="Revenue ($Mn)")
-    st.plotly_chart(chart_theme(fig), use_container_width=True, config={"displayModeBar": False})
+    st.plotly_chart(apply_theme(fig, "Market Layers Expansion ($Mn)"), use_container_width=True, config={"displayModeBar": False})
 
 def render_regional_chart():
     years = ["2025", "2030", "2035"]
@@ -650,9 +661,8 @@ def render_regional_chart():
     fig.add_trace(go.Scatter(x=years, y=apac, name='Asia Pacific', mode='lines+markers', line=dict(color=GOLD, width=3)))
     fig.add_trace(go.Scatter(x=years, y=row, name='Rest of World', mode='lines+markers', line=dict(color=SLATE_LIGHT, width=3)))
 
-    fig.update_layout(title="Regional SOM Growth Forecast")
     fig.update_yaxes(title_text="Revenue ($Mn)")
-    st.plotly_chart(chart_theme(fig), use_container_width=True, config={"displayModeBar": False})
+    st.plotly_chart(apply_theme(fig, "Regional SOM Growth Forecast"), use_container_width=True, config={"displayModeBar": False})
 
 def render_speed_chart():
     labels = ['Conventional', 'Pheno', 'ASTar', 'VITEK REVEAL', 'dRAST', 'QuickMIC']
@@ -668,9 +678,9 @@ def render_speed_chart():
         textposition='outside'
     ))
     
-    fig.update_layout(title="Time-to-Result Benchmarking", showlegend=False)
+    fig.update_layout(showlegend=False)
     fig.update_xaxes(title_text="Hours to Result", range=[0, 26])
-    st.plotly_chart(chart_theme(fig), use_container_width=True, config={"displayModeBar": False})
+    st.plotly_chart(apply_theme(fig, "Time-to-Result Benchmarking"), use_container_width=True, config={"displayModeBar": False})
 
 def render_pricing_chart():
     labels = ['QuickMIC', 'Pheno', 'ASTar', 'REVEAL', 'dRAST', 'Conventional']
@@ -684,9 +694,9 @@ def render_pricing_chart():
         text=[f"${p}" for p in prices],
         textposition='auto'
     ))
-    fig.update_layout(title="Estimated Consumable Pricing Power", showlegend=False)
+    fig.update_layout(showlegend=False)
     fig.update_yaxes(title_text="Consumable ASP ($)")
-    st.plotly_chart(chart_theme(fig), use_container_width=True, config={"displayModeBar": False})
+    st.plotly_chart(apply_theme(fig, "Estimated Consumable Pricing Power"), use_container_width=True, config={"displayModeBar": False})
 
 def render_competitor_scatter():
     comps = [
@@ -709,18 +719,16 @@ def render_competitor_scatter():
             marker=dict(size=14, color=c["color"])
         ))
     
-    fig.update_layout(title="Speed vs. Premium Positioning", showlegend=False)
+    fig.update_layout(showlegend=False)
     fig.update_xaxes(title_text="Time to Result (Hours) ← Closer to 0 is Better", autorange="reversed", range=[26, -2])
     fig.update_yaxes(title_text="Premium Pricing Power (Score)", range=[0, 11])
-    st.plotly_chart(chart_theme(fig), use_container_width=True, config={"displayModeBar": False})
+    st.plotly_chart(apply_theme(fig, "Speed vs. Premium Positioning"), use_container_width=True, config={"displayModeBar": False})
 
 
 # =========================
 # Main app logic & Security Gate
 # =========================
 def check_access():
-    expected_password = str(st.secrets.get("ACCESS_CODE", PRIMARY_PASSWORD)).strip()
-    
     if "authenticated" not in st.session_state:
         st.session_state.authenticated = False
 
@@ -744,12 +752,15 @@ def check_access():
         
         if not clean_name or not clean_pass:
             st.sidebar.warning("⚠️ Please fill in your Name and Access Code.")
-        elif clean_pass != expected_password:
+        elif clean_pass != PRIMARY_PASSWORD:
             st.sidebar.error("❌ Invalid Access Code. Please try again.")
         else:
             st.session_state.authenticated = True
             st.session_state.viewer_name = clean_name
-            st.rerun()
+            try:
+                st.rerun()
+            except AttributeError:
+                st.experimental_rerun()
 
     if not st.session_state.authenticated:
         st.markdown(
@@ -775,14 +786,17 @@ st.sidebar.markdown(f'<div class="viewer-chip">Verified: {viewer_name} | {CLIENT
 
 st.sidebar.markdown("<br>", unsafe_allow_html=True)
 
-nav_options = ["Executive Overview"] + list(CHAPTERS.keys())
+nav_options = ["Executive Overview"] + list(CHAPTERS_TOP.keys())
 page = st.sidebar.radio("Navigate", nav_options, label_visibility="collapsed")
 
 st.sidebar.markdown("---")
 if st.sidebar.button("End Session", use_container_width=True):
     st.session_state.authenticated = False
     st.session_state.viewer_name = ""
-    st.rerun()
+    try:
+        st.rerun()
+    except AttributeError:
+        st.experimental_rerun()
 
 st.markdown('<div class="main-shell">', unsafe_allow_html=True)
 
@@ -811,33 +825,27 @@ if page == "Executive Overview":
     page_footer()
 
 else:
-    # Safely Split Content and Render Chapter
-    html_content = CHAPTERS[page]
-    parts = html_content.split("[CHART_INJECTION]")
+    # 100% Safe rendering logic (no HTML splits)
+    st.markdown(CHAPTERS_TOP[page], unsafe_allow_html=True)
     
-    section_open(page.split(". ")[1] if ". " in page else page, "")
+    st.markdown("<br>", unsafe_allow_html=True)
     
-    st.markdown(parts[0], unsafe_allow_html=True)
-    
-    # If the chart injection marker was found, render the appropriate chart
-    if len(parts) > 1:
-        st.markdown("<br>", unsafe_allow_html=True)
+    # Inject the specific charts dynamically
+    if "1. " in page:
+        render_market_layers_chart()
+    elif "2. " in page:
+        render_regional_chart()
+    elif "3. " in page:
+        render_speed_chart()
+    elif "4. " in page:
+        c1, c2 = st.columns(2)
+        with c1: render_competitor_scatter()
+        with c2: render_pricing_chart()
         
-        if "1. " in page:
-            render_market_layers_chart()
-        elif "2. " in page:
-            render_regional_chart()
-        elif "3. " in page:
-            render_speed_chart()
-        elif "4. " in page:
-            c1, c2 = st.columns(2)
-            with c1: render_competitor_scatter()
-            with c2: render_pricing_chart()
-            
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown(parts[1], unsafe_allow_html=True)
-        
-    section_close()
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    st.markdown(CHAPTERS_BOTTOM[page], unsafe_allow_html=True)
+    
     page_footer()
 
 st.markdown('</div>', unsafe_allow_html=True)
