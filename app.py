@@ -721,7 +721,6 @@ def render_speed_chart():
         textposition='outside'
     ))
     
-    # CRITICAL FIX: Ensure 'range' is a list, not max=26
     fig.update_xaxes(title_text="Hours to Result", range=[0, 26])
     
     style_plot(fig, "Time-to-Result Benchmarking")
@@ -766,7 +765,6 @@ def render_competitor_scatter():
             marker=dict(size=14, color=c["color"])
         ))
     
-    # Adjusted range so labels don't get cut off
     fig.update_xaxes(title_text="Time to Result (Hours) ← Closer to 0 is Better", autorange="reversed", range=[26, -2])
     fig.update_yaxes(title_text="Premium Pricing Power (Score)", range=[0, 11])
     style_plot(fig, "Speed vs. Premium Positioning")
@@ -840,7 +838,7 @@ def render_chapter_page(title: str, nav_options: list[str]) -> None:
     
     html_content = CHAPTERS[title]
     
-    # CRITICAL FIX: Ensure precise split string is used, NOT ""
+    # CRITICAL FIX: Splitting by the exact string marker
     parts = html_content.split("")
     
     st.markdown(parts[0], unsafe_allow_html=True)
