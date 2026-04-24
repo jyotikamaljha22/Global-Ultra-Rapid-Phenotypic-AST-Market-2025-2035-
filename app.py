@@ -3,7 +3,6 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import matplotlib.pyplot as plt
 
 st.set_page_config(
     page_title="Ultra-Rapid Phenotypic AST Market | Strategic Dashboard",
@@ -13,18 +12,19 @@ st.set_page_config(
 )
 
 # -----------------------------
-# BRAND SYSTEM (Strategic Blue & Slate)
+# BRAND SYSTEM (Deep Burgundy Theme)
 # -----------------------------
-BLUE_DARK = "#1e3a8a"   # slate-900 / blue-900 mix
-BLUE_PRIMARY = "#2563eb" # blue-600
-BLUE_LIGHT = "#93c5fd"   # blue-300
-BLUE_SOFT = "#eff6ff"    # blue-50
-INK = "#0f172a"          # slate-900
-SLATE = "#475569"        # slate-600
-SLATE_LIGHT = "#94a3b8"  # slate-400
-BORDER = "#e2e8f0"       # slate-200
-BG = "#f8fafc"           # slate-50
-WHITE = "#ffffff"
+BURGUNDY = "#5B0F2E"
+BURGUNDY_DARK = "#431024"
+BURGUNDY_LIGHT = "#7A163F"
+BURGUNDY_SOFT = "#F7EEF2"
+ROSE = "#E8C7D5"
+INK = "#0F172A"
+SLATE = "#475569"
+SLATE_LIGHT = "#64748B"
+BORDER = "#E5E7EB"
+BG = "#F6F2F4"
+WHITE = "#FFFFFF"
 
 PRIMARY_PASSWORD = "SMR2026"
 CLIENT_NAME = "Gradientech AB"
@@ -67,7 +67,7 @@ CHAPTERS = {
             <td>6.9%</td>
         </tr>
         <tr>
-            <td class="font-semibold text-blue-700">SAM</td>
+            <td class="font-semibold text-burgundy-700">SAM</td>
             <td class="text-sm">Advanced / rapid AST market</td>
             <td>$1,186.0</td>
             <td>$1,945.0</td>
@@ -75,12 +75,12 @@ CHAPTERS = {
             <td>10.4%</td>
         </tr>
         <tr>
-            <td class="font-bold text-blue-900 bg-blue-50">SOM</td>
-            <td class="text-sm bg-blue-50">Ultra-rapid phenotypic AST core opportunity</td>
-            <td class="font-bold bg-blue-50">$82.7</td>
-            <td class="font-bold bg-blue-50">$169.3</td>
-            <td class="font-bold bg-blue-50">$264.5</td>
-            <td class="font-bold bg-blue-50">12.3%</td>
+            <td class="font-bold text-burgundy-900 bg-burgundy-50">SOM</td>
+            <td class="text-sm bg-burgundy-50">Ultra-rapid phenotypic AST core opportunity</td>
+            <td class="font-bold bg-burgundy-50">$82.7</td>
+            <td class="font-bold bg-burgundy-50">$169.3</td>
+            <td class="font-bold bg-burgundy-50">$264.5</td>
+            <td class="font-bold bg-burgundy-50">12.3%</td>
         </tr>
     </tbody>
 </table>
@@ -174,11 +174,11 @@ CHAPTERS = {
             <td>High probability of optimization</td>
             <td>+35% to +55%</td>
         </tr>
-        <tr class="bg-blue-50">
-            <td class="font-bold text-blue-900">Ultra-Rapid AST (2–4 hrs)</td>
-            <td class="font-bold text-blue-900">Same-shift (broad window)</td>
+        <tr class="bg-burgundy-50">
+            <td class="font-bold text-burgundy-900">Ultra-Rapid AST (2–4 hrs)</td>
+            <td class="font-bold text-burgundy-900">Same-shift (broad window)</td>
             <td class="font-bold text-emerald-700">Highest probability of therapy change</td>
-            <td class="font-bold text-blue-900">+50% to +90%</td>
+            <td class="font-bold text-burgundy-900">+50% to +90%</td>
         </tr>
     </tbody>
 </table>
@@ -204,10 +204,10 @@ CHAPTERS = {
         </tr>
     </thead>
     <tbody>
-        <tr class="bg-blue-50">
-            <td class="font-bold text-blue-900">QuickMIC (Gradientech)</td>
+        <tr class="bg-burgundy-50">
+            <td class="font-bold text-burgundy-900">QuickMIC (Gradientech)</td>
             <td class="font-bold text-emerald-600">2–4 hrs</td>
-            <td class="font-bold text-blue-900">True Linear MIC</td>
+            <td class="font-bold text-burgundy-900">True Linear MIC</td>
             <td>CE-IVDR; U.S. 510(k) pending</td>
             <td>Fastest phenotypic AST disruptor</td>
         </tr>
@@ -260,6 +260,7 @@ CHAPTERS = {
 <h1>5. Strategic Playbook & Execution Roadmap</h1>
 <p>Converting technology into commercial scale requires executing a sequenced roadmap. Innovation alone does not displace entrenched incumbent monopolies; workflow integration and unassailable clinical health economics do. The growth trajectory of ultra-rapid AST will be determined by how effectively speed is translated into clinical action and repeat utilization.</p>
 <p>For Gradientech, the opportunity lies not in competing broadly across all microbiology workflows, but in owning high-acuity decision windows where timing directly alters therapy. QuickMIC succeeds when positioned as a clinical decision-timing platform—not just a faster laboratory analyzer.</p>
+
 <h2>Where to Play & How to Win</h2>
 <table>
     <thead>
@@ -294,16 +295,16 @@ CHAPTERS = {
 </table>
 
 <h2>Execution Roadmap (2025–2035)</h2>
-<div style="border-left: 3px solid #3b82f6; padding-left: 20px; margin-bottom: 20px;">
-    <h3 style="color: #1e3a8a; margin-bottom: 5px;">Phase 1: Validation & European Foothold (2025–2027)</h3>
+<div style="border-left: 3px solid #5B0F2E; padding-left: 20px; margin-bottom: 20px;">
+    <h3 style="color: #431024; margin-bottom: 5px;">Phase 1: Validation & European Foothold (2025–2027)</h3>
     <p>Establish reference centers across CE-IVDR territories. Generate pivotal clinical utility and ICU economic evidence (HEOR). Secure FDA pathway milestones. Focus strictly on direct-from-positive blood culture testing for Gram-negative sepsis to build trust.</p>
 </div>
-<div style="border-left: 3px solid #93c5fd; padding-left: 20px; margin-bottom: 20px;">
-    <h3 style="color: #1e3a8a; margin-bottom: 5px;">Phase 2: Geographic & U.S. Expansion (2028–2031)</h3>
+<div style="border-left: 3px solid #7A163F; padding-left: 20px; margin-bottom: 20px;">
+    <h3 style="color: #431024; margin-bottom: 5px;">Phase 2: Geographic & U.S. Expansion (2028–2031)</h3>
     <p>Scale aggressive U.S. commercial entry post-FDA. Transition from early adopters to broader Tier 2 regional hospital penetration. Optimize distributor networks in APAC/MENA. Shift deeply into reagent rental business models to remove capital constraints.</p>
 </div>
-<div style="border-left: 3px solid #e2e8f0; padding-left: 20px; margin-bottom: 20px;">
-    <h3 style="color: #1e3a8a; margin-bottom: 5px;">Phase 3: Category Leadership (2032–2035)</h3>
+<div style="border-left: 3px solid #E5E7EB; padding-left: 20px; margin-bottom: 20px;">
+    <h3 style="color: #431024; margin-bottom: 5px;">Phase 3: Category Leadership (2032–2035)</h3>
     <p>Exploit standard-of-care shift in acute guidelines. Expand menu beyond Gram-negative BSI. Defend speed commoditization through panel breadth and continuous innovation. Deepen recurring consumable utilization to protect margins against incumbent bundles.</p>
 </div>
 <div class="insight-highlight">The commercial model is anchored in depth of adoption within selected accounts, rather than broad but shallow placement. Each installed system must translate into high-frequency utilization to unlock recurring consumable revenue.</div>
@@ -331,8 +332,18 @@ def inject_css(login_mode: bool = False) -> None:
             /* Hide all standard secondary buttons so we don't see dev artifacts */
             button[kind="secondary"] {{display:none;}}
 
+            /* Helper classes for Burgundy Theme inside content */
+            .text-burgundy-900 {{ color: {BURGUNDY_DARK} !important; }}
+            .text-burgundy-800 {{ color: {BURGUNDY} !important; }}
+            .text-burgundy-700 {{ color: {BURGUNDY_LIGHT} !important; }}
+            .bg-burgundy-50 {{ background-color: {BURGUNDY_SOFT} !important; }}
+            .text-emerald-700 {{ color: #047857 !important; }}
+            .text-emerald-600 {{ color: #059669 !important; }}
+
             .stApp {{
-                background-color: {BG};
+                background:
+                    radial-gradient(circle at top left, rgba(232,199,213,0.18), transparent 28%),
+                    linear-gradient(180deg, #FBF8F9 0%, #F5F1F3 100%);
             }}
 
             html, body, [class*="css"] {{
@@ -341,12 +352,12 @@ def inject_css(login_mode: bool = False) -> None:
             }}
 
             section[data-testid="stSidebar"] {{
-                background: {BLUE_DARK};
-                border-right: 1px solid rgba(255,255,255,0.05);
+                background: linear-gradient(180deg, #2E0A18 0%, #431024 100%);
+                border-right: 1px solid rgba(255,255,255,0.07);
             }}
 
             section[data-testid="stSidebar"] * {{
-                color: {BLUE_SOFT} !important;
+                color: #FFF7FA !important;
             }}
 
             [data-testid="stSidebarNav"] {{
@@ -367,23 +378,23 @@ def inject_css(login_mode: bool = False) -> None:
             .hero-card {{
                 position: relative;
                 overflow: hidden;
-                background: linear-gradient(135deg, {BLUE_DARK} 0%, {BLUE_PRIMARY} 100%);
-                border-radius: 16px;
+                background: linear-gradient(135deg, rgba(91,15,46,1) 0%, rgba(67,16,36,1) 72%);
+                border-radius: 28px;
                 padding: 34px 38px;
                 color: white;
-                box-shadow: 0 10px 25px rgba(30,58,138,0.15);
-                border: 1px solid rgba(255,255,255,0.1);
+                box-shadow: 0 18px 40px rgba(91,15,46,0.22);
+                border: 1px solid rgba(255,255,255,0.08);
                 margin-bottom: 18px;
             }}
 
             .hero-card:before {{
                 content: "";
                 position: absolute;
-                right: -50px;
-                top: -100px;
-                width: 300px;
-                height: 300px;
-                background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+                right: -120px;
+                top: -80px;
+                width: 320px;
+                height: 320px;
+                background: radial-gradient(circle, rgba(255,255,255,0.10) 0%, transparent 65%);
             }}
 
             .hero-kicker {{
@@ -391,60 +402,62 @@ def inject_css(login_mode: bool = False) -> None:
                 font-weight: 800;
                 letter-spacing: 0.16em;
                 text-transform: uppercase;
-                color: {BLUE_LIGHT};
+                color: #F6DDE6;
                 margin-bottom: 12px;
             }}
 
             .hero-title {{
-                font-size: 2.6rem;
-                line-height: 1.15;
+                font-size: 2.8rem;
+                line-height: 1.14;
                 font-weight: 800;
                 margin-bottom: 12px;
             }}
 
             .hero-subtitle {{
-                font-size: 1.1rem;
-                color: {BLUE_SOFT};
+                font-size: 1.15rem;
+                color: #F8E8EF;
                 max-width: 780px;
             }}
 
             .metric-card {{
                 background: rgba(255,255,255,0.96);
                 border: 1px solid {BORDER};
-                border-radius: 12px;
-                padding: 18px;
-                min-height: 140px;
-                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+                border-radius: 20px;
+                padding: 18px 18px 16px 18px;
+                min-height: 150px;
+                box-shadow: 0 10px 26px rgba(15,23,42,0.06);
             }}
 
             .metric-label {{
                 font-size: 12px;
                 text-transform: uppercase;
-                letter-spacing: 0.1em;
+                letter-spacing: 0.12em;
                 color: {SLATE_LIGHT};
                 font-weight: 800;
                 margin-bottom: 10px;
             }}
 
             .metric-value {{
-                font-size: 1.9rem;
+                font-size: 1.95rem;
                 line-height: 1.1;
-                color: {BLUE_DARK};
+                color: {BURGUNDY};
                 font-weight: 800;
                 margin-bottom: 8px;
             }}
 
             .metric-note {{
-                font-size: 13px;
+                font-size: 14px;
+                line-height: 1.55;
                 color: {SLATE};
             }}
 
             .sidebar-brand {{
-                background: rgba(255,255,255,0.05);
-                border: 1px solid rgba(255,255,255,0.1);
-                border-radius: 12px;
-                padding: 16px;
+                background: rgba(255,255,255,0.06);
+                border: 1px solid rgba(255,255,255,0.08);
+                border-radius: 18px;
+                padding: 16px 16px 14px 16px;
                 margin-bottom: 10px;
+                box-shadow: 0 10px 24px rgba(0,0,0,0.18);
             }}
 
             .sidebar-kicker {{
@@ -452,12 +465,12 @@ def inject_css(login_mode: bool = False) -> None:
                 font-weight: 800;
                 text-transform: uppercase;
                 letter-spacing: 0.12em;
-                color: {BLUE_LIGHT} !important;
+                color: #E9C7D5 !important;
                 margin-bottom: 6px;
             }}
 
             .sidebar-title {{
-                font-size: 18px;
+                font-size: 20px;
                 line-height: 1.25;
                 font-weight: 800;
                 margin-bottom: 6px;
@@ -465,20 +478,21 @@ def inject_css(login_mode: bool = False) -> None:
 
             .sidebar-sub {{
                 font-size: 12px;
-                color: {BLUE_SOFT} !important;
+                color: #F1DDE5 !important;
             }}
 
             .sidebar-user {{
-                background: rgba(255,255,255,0.03);
-                border-radius: 8px;
-                padding: 12px;
-                border: 1px solid rgba(255,255,255,0.05);
+                background: rgba(255,255,255,0.05);
+                border-radius: 14px;
+                padding: 12px 14px;
+                border: 1px solid rgba(255,255,255,0.06);
                 margin: 10px 0 14px;
+                color: #FDEEF5;
                 font-size: 13px;
             }}
 
             .section-title {{
-                font-size: 1.3rem;
+                font-size: 1.32rem;
                 font-weight: 800;
                 color: {INK};
                 margin: 0 0 0.35rem 0;
@@ -486,29 +500,29 @@ def inject_css(login_mode: bool = False) -> None:
 
             .section-subtitle {{
                 color: {SLATE};
-                font-size: 0.95rem;
+                font-size: 0.96rem;
                 margin-bottom: 1rem;
             }}
 
             .report-shell {{
-                background: {WHITE};
+                background: rgba(255,255,255,0.96);
                 border: 1px solid {BORDER};
-                border-radius: 16px;
-                box-shadow: 0 10px 25px rgba(15,23,42,0.05);
+                border-radius: 24px;
+                box-shadow: 0 14px 32px rgba(15,23,42,0.06);
                 overflow: hidden;
                 margin-top: 16px;
             }}
 
             .report-banner {{
-                background: {BLUE_SOFT};
-                border-bottom: 1px solid {BORDER};
+                background: linear-gradient(135deg, #FFF6F9 0%, #FAEDF2 100%);
+                border-bottom: 1px solid #EED7E1;
                 padding: 18px 26px;
             }}
 
             .report-title {{
-                font-size: 1.5rem;
+                font-size: 1.6rem;
                 font-weight: 800;
-                color: {BLUE_DARK};
+                color: {INK};
             }}
 
             .report-card {{
@@ -516,54 +530,57 @@ def inject_css(login_mode: bool = False) -> None:
             }}
 
             .chapter-content h1 {{
-                font-size: 2rem;
+                font-size: 2.15rem;
                 font-weight: 800;
-                color: {INK};
+                color: #0F172A;
                 margin-top: 0;
-                margin-bottom: 1.2rem;
-                border-bottom: 2px solid {BORDER};
-                padding-bottom: 0.5rem;
+                margin-bottom: 1.5rem;
+                border-bottom: 2px solid #E2E8F0;
+                padding-bottom: 0.55rem;
             }}
 
             .chapter-content h2 {{
-                font-size: 1.4rem;
+                font-size: 1.5rem;
                 font-weight: 700;
-                color: {BLUE_DARK};
+                color: #1E293B;
                 margin-top: 2rem;
                 margin-bottom: 1rem;
             }}
 
             .chapter-content p {{
-                margin-bottom: 1.2rem;
-                line-height: 1.75;
-                color: {SLATE};
-                font-size: 0.98rem;
+                margin-bottom: 1.25rem;
+                line-height: 1.8;
+                color: #334155;
+                text-align: justify;
+                font-size: 0.99rem;
             }}
 
             .chapter-content table {{
                 width: 100%;
                 border-collapse: collapse;
                 margin: 1.5rem 0;
-                background-color: {WHITE};
-                border-radius: 8px;
+                background-color: #ffffff;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+                border-radius: 0.6rem;
                 overflow: hidden;
-                border: 1px solid {BORDER};
+                border: 1px solid #E2E8F0;
             }}
 
             .chapter-content th {{
-                background: {BLUE_DARK};
-                color: {WHITE};
-                font-weight: 600;
+                background: linear-gradient(180deg, #5B0F2E 0%, #431024 100%);
+                color: #ffffff;
+                font-weight: 700;
                 text-align: left;
-                padding: 0.75rem 1rem;
-                font-size: 0.85rem;
+                padding: 0.85rem 1rem;
+                border-bottom: 2px solid #6E2341;
+                font-size: 0.88rem;
             }}
 
             .chapter-content td {{
-                padding: 0.75rem 1rem;
-                border-bottom: 1px solid {BORDER};
-                color: {SLATE};
-                font-size: 0.85rem;
+                padding: 0.8rem 1rem;
+                border-bottom: 1px solid #E2E8F0;
+                color: #334155;
+                font-size: 0.88rem;
                 vertical-align: top;
             }}
 
@@ -572,29 +589,29 @@ def inject_css(login_mode: bool = False) -> None:
             }}
 
             .chapter-content tr:hover td {{
-                background-color: {BLUE_SOFT};
+                background-color: #FBF5F7;
             }}
 
             .insight-highlight {{
-                background-color: {BLUE_SOFT};
-                border-left: 4px solid {BLUE_PRIMARY};
+                background-color: #FAF2F5;
+                border-left: 4px solid #8A1E4F;
                 padding: 1rem 1.25rem;
                 margin: 1.5rem 0;
                 font-style: italic;
-                color: {BLUE_DARK};
-                font-weight: 500;
-                border-radius: 0 8px 8px 0;
+                color: #7A163F;
+                font-weight: 600;
+                border-radius: 0 0.5rem 0.5rem 0;
             }}
 
             .post-table-insight {{
-                background-color: #f8fafc;
-                border: 1px solid {BORDER};
+                background-color: #FCFAFB;
+                border: 1px solid #E8DCE2;
                 padding: 1rem;
                 margin-top: -1rem;
                 margin-bottom: 1.5rem;
                 font-size: 0.88rem;
-                color: {SLATE};
-                border-radius: 0 0 8px 8px;
+                color: #5B4B54;
+                border-radius: 0 0 0.5rem 0.5rem;
             }}
 
             [data-testid="stForm"] {{
@@ -603,22 +620,23 @@ def inject_css(login_mode: bool = False) -> None:
             }}
 
             [data-testid="stTextInput"] label {{
-                font-weight: 600 !important;
+                font-weight: 700 !important;
                 color: {INK} !important;
             }}
             
             .stButton > button {{
-                background: {BLUE_PRIMARY};
+                background: linear-gradient(135deg, {BURGUNDY} 0%, {BURGUNDY_DARK} 100%);
                 color: white;
                 border: none;
-                border-radius: 8px;
-                padding: 0.6rem 1rem;
-                font-weight: 600;
-                box-shadow: 0 4px 6px rgba(37,99,235,0.2);
+                border-radius: 14px;
+                padding: 0.7rem 1rem;
+                font-weight: 700;
+                box-shadow: 0 10px 20px rgba(91,15,46,0.18);
             }}
 
             .stButton > button:hover {{
-                filter: brightness(1.1);
+                filter: brightness(1.04);
+                transform: translateY(-1px);
             }}
         </style>
         """,
@@ -645,7 +663,7 @@ def section_intro(title: str, subtitle: str) -> None:
 
 def style_plot(fig: go.Figure, title: str, height: int = 360) -> go.Figure:
     fig.update_layout(
-        title=dict(text=title, x=0, font=dict(size=16, color=BLUE_DARK)),
+        title=dict(text=title, x=0, font=dict(size=16, color=INK)),
         paper_bgcolor="white",
         plot_bgcolor="white",
         font=dict(family="Inter, sans-serif", color=SLATE),
@@ -665,8 +683,8 @@ def render_market_layers_chart():
 
     fig = go.Figure()
     fig.add_trace(go.Bar(x=years, y=tam, name='TAM (Broad Micro)', marker_color=BORDER))
-    fig.add_trace(go.Bar(x=years, y=sam, name='SAM (Adv AST)', marker_color=BLUE_LIGHT))
-    fig.add_trace(go.Bar(x=years, y=som, name='SOM (Ultra-Rapid)', marker_color=BLUE_PRIMARY))
+    fig.add_trace(go.Bar(x=years, y=sam, name='SAM (Adv AST)', marker_color=ROSE))
+    fig.add_trace(go.Bar(x=years, y=som, name='SOM (Ultra-Rapid)', marker_color=BURGUNDY))
 
     fig.update_layout(barmode='group')
     fig.update_yaxes(title_text="Revenue ($Mn)")
@@ -681,9 +699,9 @@ def render_regional_chart():
     row = [12, 29, 102]
 
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=years, y=na, name='North America', mode='lines+markers', line=dict(color=BLUE_DARK, width=3)))
-    fig.add_trace(go.Scatter(x=years, y=eu, name='Europe', mode='lines+markers', line=dict(color=BLUE_PRIMARY, width=3)))
-    fig.add_trace(go.Scatter(x=years, y=apac, name='Asia Pacific', mode='lines+markers', line=dict(color=BLUE_LIGHT, width=3)))
+    fig.add_trace(go.Scatter(x=years, y=na, name='North America', mode='lines+markers', line=dict(color=BURGUNDY, width=3)))
+    fig.add_trace(go.Scatter(x=years, y=eu, name='Europe', mode='lines+markers', line=dict(color=BURGUNDY_LIGHT, width=3)))
+    fig.add_trace(go.Scatter(x=years, y=apac, name='Asia Pacific', mode='lines+markers', line=dict(color="#B07A92", width=3)))
     fig.add_trace(go.Scatter(x=years, y=row, name='Rest of World', mode='lines+markers', line=dict(color=SLATE_LIGHT, width=3)))
 
     fig.update_yaxes(title_text="Revenue ($Mn)")
@@ -693,7 +711,7 @@ def render_regional_chart():
 def render_speed_chart():
     labels = ['Conventional', 'Pheno', 'ASTar', 'VITEK REVEAL', 'dRAST', 'QuickMIC']
     times = [24, 7, 6, 5.75, 4, 3]
-    colors = [SLATE_LIGHT, '#f97316', '#f59e0b', '#fbbf24', '#10b981', '#059669']
+    colors = [SLATE_LIGHT, '#f97316', '#f59e0b', '#fbbf24', '#B07A92', BURGUNDY]
 
     fig = go.Figure(go.Bar(
         x=times, 
@@ -711,7 +729,7 @@ def render_speed_chart():
 def render_pricing_chart():
     labels = ['QuickMIC', 'Pheno', 'ASTar', 'REVEAL', 'dRAST', 'Conventional']
     prices = [100, 125, 105, 105, 95, 35]
-    colors = [BLUE_DARK, SLATE, SLATE, SLATE, SLATE, BORDER]
+    colors = [BURGUNDY, SLATE, SLATE, SLATE, SLATE, BORDER]
 
     fig = go.Figure(go.Bar(
         x=labels, 
@@ -727,8 +745,8 @@ def render_pricing_chart():
 
 def render_competitor_scatter():
     comps = [
-        {"name": "QuickMIC", "time": 3, "prem": 9, "color": BLUE_DARK},
-        {"name": "dRAST", "time": 4, "prem": 8, "color": BLUE_PRIMARY},
+        {"name": "QuickMIC", "time": 3, "prem": 9, "color": BURGUNDY},
+        {"name": "dRAST", "time": 4, "prem": 8, "color": BURGUNDY_LIGHT},
         {"name": "VITEK REVEAL", "time": 5.75, "prem": 9.5, "color": SLATE},
         {"name": "ASTar", "time": 6, "prem": 7.5, "color": SLATE_LIGHT},
         {"name": "Pheno", "time": 7, "prem": 8, "color": "#f97316"},
@@ -819,7 +837,7 @@ def render_chapter_page(title: str, nav_options: list[str]) -> None:
     
     html_content = CHAPTERS[title]
     
-    # Safely split by the marker
+    # Safely split by the hardcoded string marker in the dictionary
     parts = html_content.split("")
     
     st.markdown(parts[0], unsafe_allow_html=True)
@@ -862,7 +880,7 @@ def render_login() -> None:
         
         with st.container(border=True):
             st.markdown(f"""
-                <h2 style='text-align: center; color: {BLUE_DARK}; padding-bottom: 15px;'>
+                <h2 style='text-align: center; color: {BURGUNDY}; padding-bottom: 15px;'>
                     SMR BOARDROOM ACCESS
                 </h2>
             """, unsafe_allow_html=True)
@@ -874,17 +892,27 @@ def render_login() -> None:
             
             if st.button("Enter Dashboard", type="primary", use_container_width=True):
                 if password == PRIMARY_PASSWORD:
-                    st.session_state.authenticated = True
-                    st.session_state.visitor_name = name.strip()
-                    st.session_state.nav_choice = "Overview"
+                    st.session_state["authenticated"] = True
+                    st.session_state["visitor_name"] = name.strip()
+                    st.session_state["nav_choice"] = "Overview"
                     st.rerun()
                 else:
                     st.error("Incorrect password")
 
 # -----------------------------
+# SESSION STATE (SAFE INIT)
+# -----------------------------
+if "authenticated" not in st.session_state:
+    st.session_state["authenticated"] = False
+if "visitor_name" not in st.session_state:
+    st.session_state["visitor_name"] = ""
+if "nav_choice" not in st.session_state:
+    st.session_state["nav_choice"] = "Overview"
+
+# -----------------------------
 # APP ROUTING
 # -----------------------------
-if not st.session_state.authenticated:
+if not st.session_state["authenticated"]:
     render_login()
     st.stop()
 
@@ -906,7 +934,7 @@ st.sidebar.markdown(
 st.sidebar.markdown(
     f"""
     <div class="sidebar-user">
-        Viewing as <strong>{st.session_state.visitor_name}</strong><br>
+        Viewing as <strong>{st.session_state["visitor_name"]}</strong><br>
         Premium Boardroom Briefing
     </div>
     """,
@@ -922,15 +950,16 @@ st.sidebar.radio(
 
 st.sidebar.caption("Confidential & Proprietary")
 st.sidebar.caption("© 2026 Strategic Market Research")
+
 if st.sidebar.button("Logout", type="primary", use_container_width=True):
-    st.session_state.authenticated = False
-    st.session_state.visitor_name = ""
-    st.session_state.nav_choice = "Overview"
+    st.session_state["authenticated"] = False
+    st.session_state["visitor_name"] = ""
+    st.session_state["nav_choice"] = "Overview"
     st.rerun()
 
 st.markdown('<div class="main-shell">', unsafe_allow_html=True)
-if st.session_state.nav_choice == "Overview":
+if st.session_state["nav_choice"] == "Overview":
     render_overview()
 else:
-    render_chapter_page(st.session_state.nav_choice, nav_options)
+    render_chapter_page(st.session_state["nav_choice"], nav_options)
 st.markdown('</div>', unsafe_allow_html=True)
