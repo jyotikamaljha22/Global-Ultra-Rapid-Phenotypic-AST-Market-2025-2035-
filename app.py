@@ -28,6 +28,9 @@ CARD = "rgba(255, 255, 255, 0.85)"
 INK = "#1A1014"
 MUTED = "#6B5B63"
 BORDER = "rgba(255, 255, 255, 0.9)"
+
+# Consulting Chart Palette
+CHART_BG = "#F5F6F8"
 SLATE = "#475569"
 SLATE_LIGHT = "#94a3b8"
 
@@ -62,20 +65,10 @@ st.markdown(
     header[data-testid="stHeader"] {{ background: transparent !important; box-shadow: none !important; }}
 
     /* CUSTOM ELEGANT SCROLLBAR */
-    ::-webkit-scrollbar {{
-        width: 6px;
-        height: 6px;
-    }}
-    ::-webkit-scrollbar-track {{
-        background: transparent;
-    }}
-    ::-webkit-scrollbar-thumb {{
-        background: rgba(91,15,46,0.15);
-        border-radius: 10px;
-    }}
-    ::-webkit-scrollbar-thumb:hover {{
-        background: rgba(91,15,46,0.3);
-    }}
+    ::-webkit-scrollbar {{ width: 6px; height: 6px; }}
+    ::-webkit-scrollbar-track {{ background: transparent; }}
+    ::-webkit-scrollbar-thumb {{ background: rgba(91,15,46,0.15); border-radius: 10px; }}
+    ::-webkit-scrollbar-thumb:hover {{ background: rgba(91,15,46,0.3); }}
 
     /* LIVING GRADIENT BACKGROUND */
     .stApp {{
@@ -96,14 +89,9 @@ st.markdown(
     /* SLEEK BUTTON STYLING */
     .stButton > button {{
         background: linear-gradient(135deg, {BURGUNDY} 0%, {BURGUNDY_MID} 100%) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 10px !important;
-        padding: 10px 24px !important;
-        font-weight: 700 !important;
-        font-size: 0.9rem !important;
-        letter-spacing: 0.02em;
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        color: white !important; border: none !important; border-radius: 10px !important;
+        padding: 10px 24px !important; font-weight: 700 !important; font-size: 0.9rem !important;
+        letter-spacing: 0.02em; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
         box-shadow: 0 4px 14px rgba(91,15,46,0.2) !important;
     }}
     .stButton > button:hover {{
@@ -113,64 +101,44 @@ st.markdown(
 
     /* INPUT FIELDS */
     .stTextInput input {{
-        border-radius: 8px !important;
-        border: 1px solid rgba(91,15,46,0.15) !important;
-        padding: 12px 14px !important;
-        background: rgba(255,255,255,0.8) !important;
+        border-radius: 8px !important; border: 1px solid rgba(91,15,46,0.15) !important;
+        padding: 12px 14px !important; background: rgba(255,255,255,0.8) !important;
         transition: all 0.2s ease !important;
     }}
     .stTextInput input:focus {{
-        border-color: {GOLD} !important;
-        background: #fff !important;
+        border-color: {GOLD} !important; background: #fff !important;
         box-shadow: 0 0 0 3px rgba(201,162,39,0.15) !important;
     }}
 
     /* APP-LIKE NAVIGATION */
     [data-testid="stSidebar"] [data-testid="stRadio"] label[data-baseweb="radio"] {{
-        padding: 10px 14px !important;
-        margin-bottom: 6px !important;
-        border-radius: 8px !important;
-        transition: all 0.2s ease !important;
-        cursor: pointer !important;
+        padding: 10px 14px !important; margin-bottom: 6px !important; border-radius: 8px !important;
+        transition: all 0.2s ease !important; cursor: pointer !important;
     }}
     [data-testid="stSidebar"] [data-testid="stRadio"] label[data-baseweb="radio"]:hover {{
-        background: rgba(91,15,46,0.04) !important;
-        transform: translateX(3px) !important;
+        background: rgba(91,15,46,0.04) !important; transform: translateX(3px) !important;
     }}
     [data-testid="stSidebar"] [data-testid="stRadio"] label[data-baseweb="radio"]:has(input[checked]) {{
-         background: #ffffff !important;
-         border-left: 4px solid {BURGUNDY} !important;
+         background: #ffffff !important; border-left: 4px solid {BURGUNDY} !important;
          box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
     }}
     [data-testid="stSidebar"] [data-testid="stRadio"] label[data-baseweb="radio"] p {{
-        font-weight: 600 !important;
-        font-size: 0.92rem !important;
-        color: {INK} !important;
+        font-weight: 600 !important; font-size: 0.92rem !important; color: {INK} !important;
     }}
 
     /* FROSTED BRANDING HEADER */
     .smr-brand {{
-      background: rgba(255,255,255,0.7);
-      border: 1px solid {BORDER};
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.03);
-      margin-bottom: 24px;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.7); border: 1px solid {BORDER}; border-radius: 16px;
+      padding: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.03); margin-bottom: 24px;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     }}
     
     .hero {{
       background: linear-gradient(135deg, {BURGUNDY} 0%, {BURGUNDY_MID} 60%, {BURGUNDY_SOFT} 100%);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      padding: 34px 40px;
-      box-shadow: 0 20px 40px rgba(61,16,33,0.15), inset 0 1px 0 rgba(255,255,255,0.2);
-      margin-bottom: 24px;
-      animation: floatIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-      position: relative;
-      overflow: hidden;
+      color: white; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
+      padding: 34px 40px; box-shadow: 0 20px 40px rgba(61,16,33,0.15), inset 0 1px 0 rgba(255,255,255,0.2);
+      margin-bottom: 24px; animation: floatIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative; overflow: hidden;
     }}
     .hero::before {{
       content: ''; position: absolute; top: -50%; right: -10%; width: 60%; height: 200%;
@@ -186,53 +154,30 @@ st.markdown(
     
     /* GLASSMORPHISM DATA CARDS */
     .metric-card {{
-      background: {CARD};
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid {BORDER};
-      border-radius: 16px;
-      padding: 24px;
+      background: {CARD}; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid {BORDER}; border-radius: 16px; padding: 24px;
       box-shadow: 0 12px 36px rgba(91,15,46,0.03), 0 2px 8px rgba(0,0,0,0.02);
-      min-height: 135px;
-      animation: floatIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      min-height: 135px; animation: floatIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }}
     .metric-card:hover {{
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(91,15,46,0.08), 0 4px 12px rgba(0,0,0,0.03);
+      transform: translateY(-4px); box-shadow: 0 16px 40px rgba(91,15,46,0.08), 0 4px 12px rgba(0,0,0,0.03);
       border-color: rgba(201,162,39,0.3);
     }}
     .metric-label {{
-      color: {MUTED};
-      font-size: 0.82rem;
-      margin-bottom: 8px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      color: {MUTED}; font-size: 0.82rem; margin-bottom: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
     }}
     .metric-value {{
-      color: {BURGUNDY};
-      font-size: 2.6rem;
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
+      color: {BURGUNDY}; font-size: 2.6rem; font-weight: 800; line-height: 1; letter-spacing: -0.02em; margin-bottom: 12px;
     }}
     .metric-foot {{
-      color: {MUTED};
-      font-size: 0.85rem;
-      line-height: 1.4;
+      color: {MUTED}; font-size: 0.85rem; line-height: 1.4;
     }}
 
     .section-card {{
-      background: {CARD};
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid {BORDER};
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: 0 12px 36px rgba(91,15,46,0.03);
-      margin-bottom: 24px;
+      background: {CARD}; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid {BORDER}; border-radius: 20px; padding: 24px;
+      box-shadow: 0 12px 36px rgba(91,15,46,0.03); margin-bottom: 24px;
       animation: floatIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
     }}
     .section-title {{
@@ -244,17 +189,9 @@ st.markdown(
     }}
     
     .insight-box {{
-      background: #ffffff;
-      border: 1px solid rgba(201,162,39,0.2);
-      border-left: 6px solid {GOLD};
-      border-radius: 12px;
-      padding: 20px 24px;
-      color: {INK};
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 24px;
-      box-shadow: 0 8px 24px rgba(201,162,39,0.05);
-      animation: floatIn 0.6s ease-out;
+      background: #ffffff; border: 1px solid rgba(201,162,39,0.2); border-left: 6px solid {GOLD};
+      border-radius: 12px; padding: 20px 24px; color: {INK}; font-size: 0.95rem; line-height: 1.6;
+      margin-bottom: 24px; box-shadow: 0 8px 24px rgba(201,162,39,0.05); animation: floatIn 0.6s ease-out;
     }}
     
     .viewer-chip {{
@@ -265,20 +202,18 @@ st.markdown(
 
     /* CHAPTER CONTENT FORMATTING */
     .chapter-content h1 {{
-        font-size: 2.15rem; font-weight: 800; color: {INK};
-        margin-top: 0; margin-bottom: 1.5rem;
+        font-size: 2.15rem; font-weight: 800; color: {INK}; margin-top: 0; margin-bottom: 1.5rem;
         border-bottom: 2px solid {BORDER}; padding-bottom: 0.55rem;
     }}
     .chapter-content h2 {{
-        font-size: 1.5rem; font-weight: 700; color: {BURGUNDY_DARK};
-        margin-top: 2rem; margin-bottom: 1rem;
+        font-size: 1.5rem; font-weight: 700; color: {BURGUNDY_DARK}; margin-top: 2rem; margin-bottom: 1rem;
     }}
     .chapter-content p {{
         margin-bottom: 1.25rem; line-height: 1.8; color: {MUTED}; font-size: 0.99rem;
     }}
     .chapter-content table {{
-        width: 100%; border-collapse: collapse; margin: 1.5rem 0;
-        background-color: #ffffff; border-radius: 0.6rem; overflow: hidden; border: 1px solid {BORDER};
+        width: 100%; border-collapse: collapse; margin: 1.5rem 0; background-color: #ffffff;
+        border-radius: 0.6rem; overflow: hidden; border: 1px solid {BORDER};
     }}
     .chapter-content th {{
         background: linear-gradient(180deg, {BURGUNDY} 0%, {BURGUNDY_DARK} 100%);
@@ -389,30 +324,29 @@ CHAPTERS_BOTTOM = {
 ''',
     "2. Market Sizing, Geography & Epidemiology": r'''
 <div class="chapter-content">
-<h2>Country-Level Speed-Sensitive Opportunity</h2>
+<h2>Strategic Country-Level Prioritization</h2>
 <table>
     <thead>
         <tr>
             <th>Rank</th>
-            <th>Country / Tier</th>
-            <th>2025 ($Mn)</th>
-            <th>2030 ($Mn)</th>
-            <th>2035 ($Mn)</th>
+            <th>Country</th>
+            <th>Strategic Classification</th>
+            <th>Market Priority</th>
         </tr>
     </thead>
     <tbody>
-        <tr><td>1</td><td><strong>United States</strong> — Priority early market</td><td>$34.0</td><td>$110.0</td><td>$285.0</td></tr>
-        <tr><td>2</td><td><strong>China</strong> — Scalable expansion market</td><td>$8.0</td><td>$28.0</td><td>$88.0</td></tr>
-        <tr><td>3</td><td><strong>Germany</strong> — Priority early market</td><td>$10.0</td><td>$24.0</td><td>$58.0</td></tr>
-        <tr><td>4</td><td><strong>Japan</strong> — Scalable expansion market</td><td>$7.0</td><td>$19.0</td><td>$52.0</td></tr>
-        <tr><td>5</td><td><strong>Italy</strong> — Priority early market</td><td>$8.0</td><td>$22.0</td><td>$48.0</td></tr>
-        <tr><td>6</td><td><strong>United Kingdom</strong> — Priority early market</td><td>$8.0</td><td>$21.0</td><td>$46.0</td></tr>
-        <tr><td>7</td><td><strong>France</strong> — Priority early market</td><td>$7.0</td><td>$20.0</td><td>$44.0</td></tr>
-        <tr><td>8</td><td><strong>South Korea</strong> — Priority early market</td><td>$4.0</td><td>$15.0</td><td>$41.0</td></tr>
-        <tr><td>9</td><td><strong>Spain</strong> — Priority early market</td><td>$5.0</td><td>$14.0</td><td>$33.0</td></tr>
+        <tr><td>1</td><td><strong>United States</strong></td><td>Priority early market</td><td>Tier 1</td></tr>
+        <tr><td>2</td><td><strong>China</strong></td><td>Scalable expansion market</td><td>Tier 1</td></tr>
+        <tr><td>3</td><td><strong>Germany</strong></td><td>Priority early market</td><td>Tier 1</td></tr>
+        <tr><td>4</td><td><strong>Japan</strong></td><td>Scalable expansion market</td><td>Tier 2</td></tr>
+        <tr><td>5</td><td><strong>Italy</strong></td><td>Priority early market</td><td>Tier 2</td></tr>
+        <tr><td>6</td><td><strong>United Kingdom</strong></td><td>Priority early market</td><td>Tier 2</td></tr>
+        <tr><td>7</td><td><strong>France</strong></td><td>Priority early market</td><td>Tier 2</td></tr>
+        <tr><td>8</td><td><strong>South Korea</strong></td><td>Priority early market</td><td>Tier 3</td></tr>
+        <tr><td>9</td><td><strong>Spain</strong></td><td>Priority early market</td><td>Tier 3</td></tr>
     </tbody>
 </table>
-<div class="insight-box">The United States remains the largest single opportunity, combining high clinical intensity with a healthcare system that is more receptive to premium diagnostics that demonstrate outcome and cost benefits. China and Japan represent important expansion markets, where scale and AMR pressure support long-term growth.</div>
+<div class="insight-box">The United States remains the largest single opportunity, combining high clinical intensity with a healthcare system that is more receptive to premium diagnostics that demonstrate outcome and cost benefits. China and Japan represent important expansion markets, where scale and AMR pressure support long-term growth. Detailed country-level sizing has been masked in this preview view for confidentiality.</div>
 <h2>Global Market Forecast by Region</h2>
 <table>
     <thead>
@@ -586,7 +520,7 @@ CHAPTERS_BOTTOM = {
     <p style="margin-bottom:0; font-size:0.9rem;">Scale aggressive U.S. commercial entry post-FDA. Transition from early adopters to broader Tier 2 regional hospital penetration. Optimize distributor networks in APAC/MENA. Shift deeply into reagent rental business models to remove capital constraints.</p>
 </div>
 <div style="border-left: 4px solid #A45A7B; padding-left: 20px; margin-bottom: 20px; background: #fff; padding-top:10px; padding-bottom:10px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
-    <h3 style="color: #431022; margin-top:0; margin-bottom: 5px;">Phase 3: Category Leadership (2032–2035)</h3>
+    <h3 style="color: #431022; margin-bottom: 5px;">Phase 3: Category Leadership (2032–2035)</h3>
     <p style="margin-bottom:0; font-size:0.9rem;">Exploit standard-of-care shift in acute guidelines. Expand menu beyond Gram-negative BSI. Defend speed commoditization through panel breadth and continuous innovation. Deepen recurring consumable utilization to protect margins against incumbent bundles.</p>
 </div>
 </div>
@@ -610,18 +544,19 @@ def section_close():
     st.markdown("</div>", unsafe_allow_html=True)
 
 def apply_theme(fig: go.Figure, title: str) -> go.Figure:
+    # Consulting Grade Theme: Light grey background, muted grid lines, crisp typography
     fig.update_layout(
         title=dict(text=title, x=0, font=dict(size=16, color=INK)),
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor=CHART_BG,
+        plot_bgcolor=CHART_BG,
         font=dict(color=INK, family="'Plus Jakarta Sans', sans-serif"),
-        margin=dict(l=10, r=10, t=50, b=10),
+        margin=dict(l=20, r=20, t=60, b=20),
         legend_title_text="",
         legend=dict(orientation="h", yanchor="bottom", y=1.05, xanchor="right", x=1),
         hoverlabel=dict(bgcolor="white", font_size=13, font_family="'Plus Jakarta Sans', sans-serif", bordercolor=BORDER),
     )
-    fig.update_xaxes(showgrid=False, linecolor="rgba(0,0,0,0.05)", tickfont=dict(size=11, color=MUTED))
-    fig.update_yaxes(gridcolor="rgba(91,15,46,0.04)", zeroline=False, tickfont=dict(size=11, color=MUTED))
+    fig.update_xaxes(showgrid=False, linecolor="rgba(0,0,0,0.1)", tickfont=dict(size=11, color=MUTED), title_font=dict(size=12, color=MUTED))
+    fig.update_yaxes(gridcolor="rgba(0,0,0,0.05)", zeroline=False, tickfont=dict(size=11, color=MUTED), title_font=dict(size=12, color=MUTED))
     return fig
 
 def brand_sidebar():
@@ -634,7 +569,7 @@ def page_footer():
     st.markdown(f'<div style="margin-top:30px; text-align:center; padding: 24px; color:{MUTED}; font-size:0.8rem; border-top: 1px solid rgba(0,0,0,0.06);"><strong>Confidential & Proprietary</strong> &copy; 2026 Strategic Market Research<br>To access the full report: info@strategicmarketresearch.com</div>', unsafe_allow_html=True)
 
 # =========================
-# Chart Rendering Functions
+# Chart Rendering Functions (Consulting Grade)
 # =========================
 def render_market_layers_chart():
     years = ["2025", "2030", "2035"]
@@ -643,9 +578,9 @@ def render_market_layers_chart():
     som = [82.7, 169.3, 264.5]
 
     fig = go.Figure()
-    fig.add_trace(go.Bar(x=years, y=tam, name='TAM (Broad Micro)', marker_color=ROSE))
-    fig.add_trace(go.Bar(x=years, y=sam, name='SAM (Adv AST)', marker_color=BURGUNDY_SOFT))
-    fig.add_trace(go.Bar(x=years, y=som, name='SOM (Ultra-Rapid)', marker_color=BURGUNDY))
+    fig.add_trace(go.Bar(x=years, y=tam, name='TAM (Broad Micro)', marker_color=ROSE, text=tam, texttemplate='%{text:,.0f}', textposition='inside', insidetextanchor='middle', textfont=dict(color=INK)))
+    fig.add_trace(go.Bar(x=years, y=sam, name='SAM (Adv AST)', marker_color=BURGUNDY_SOFT, text=sam, texttemplate='%{text:,.0f}', textposition='inside', insidetextanchor='middle', textfont=dict(color="white")))
+    fig.add_trace(go.Bar(x=years, y=som, name='SOM (Ultra-Rapid)', marker_color=BURGUNDY, text=som, texttemplate='%{text:,.1f}', textposition='outside', textfont=dict(color=BURGUNDY, weight="bold")))
 
     fig.update_layout(barmode='group')
     fig.update_yaxes(title_text="Revenue ($Mn)")
@@ -659,29 +594,46 @@ def render_regional_chart():
     row = [12, 29, 102]
 
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=years, y=na, name='North America', mode='lines+markers', line=dict(color=BURGUNDY, width=3)))
-    fig.add_trace(go.Scatter(x=years, y=eu, name='Europe', mode='lines+markers', line=dict(color=BURGUNDY_MID, width=3)))
-    fig.add_trace(go.Scatter(x=years, y=apac, name='Asia Pacific', mode='lines+markers', line=dict(color=GOLD, width=3)))
-    fig.add_trace(go.Scatter(x=years, y=row, name='Rest of World', mode='lines+markers', line=dict(color=SLATE_LIGHT, width=3)))
+    # Using Stacked Area Chart (BCG Style)
+    fig.add_trace(go.Scatter(x=years, y=row, name='Rest of World', mode='lines', stackgroup='one', line=dict(color=SLATE_LIGHT, width=0), fillcolor=SLATE_LIGHT))
+    fig.add_trace(go.Scatter(x=years, y=apac, name='Asia Pacific', mode='lines', stackgroup='one', line=dict(color=GOLD, width=0), fillcolor=GOLD))
+    fig.add_trace(go.Scatter(x=years, y=eu, name='Europe', mode='lines', stackgroup='one', line=dict(color=BURGUNDY_SOFT, width=0), fillcolor=BURGUNDY_SOFT))
+    fig.add_trace(go.Scatter(x=years, y=na, name='North America', mode='lines', stackgroup='one', line=dict(color=BURGUNDY, width=0), fillcolor=BURGUNDY))
 
-    fig.update_yaxes(title_text="Revenue ($Mn)")
+    fig.update_yaxes(title_text="Cumulative Revenue ($Mn)")
     st.plotly_chart(apply_theme(fig, "Regional SOM Growth Forecast"), use_container_width=True, config={"displayModeBar": False})
 
-def render_country_bar():
-    countries = ["USA", "China", "Germany", "Japan", "Italy", "UK", "France", "S. Korea", "Spain"]
-    vals_25 = [34, 8, 10, 7, 8, 8, 7, 4, 5]
-    vals_35 = [285, 88, 58, 52, 48, 46, 44, 41, 33]
+def render_country_index():
+    # Masked Data: Indexing USA to 100 to protect raw numbers. Sorted descending to follow funnel logic preference.
+    countries = ["United States", "China", "Germany", "Japan", "Italy", "UK", "France", "S. Korea", "Spain"]
+    index_vals = [100, 31, 20, 18, 17, 16, 15, 14, 12]
 
-    fig = go.Figure()
-    fig.add_trace(go.Bar(x=countries, y=vals_35, name="2035 ($Mn)", marker_color=BURGUNDY))
-    fig.add_trace(go.Bar(x=countries, y=vals_25, name="2025 ($Mn)", marker_color=GOLD))
-    fig.update_layout(barmode='group')
-    st.plotly_chart(apply_theme(fig, "Top 9 Market Opportunities ($Mn)"), use_container_width=True, config={"displayModeBar": False})
+    # Reversing for horizontal bar chart so biggest is at top
+    countries.reverse()
+    index_vals.reverse()
+
+    fig = go.Figure(go.Bar(
+        x=index_vals, 
+        y=countries, 
+        orientation='h', 
+        marker_color=[BURGUNDY if c == "United States" else GOLD for c in countries],
+        text=[f"{v}" for v in index_vals],
+        textposition='outside'
+    ))
+    
+    fig.update_layout(showlegend=False)
+    fig.update_xaxes(title_text="Relative Opportunity Score (US = 100)")
+    st.plotly_chart(apply_theme(fig, "Top 9 Markets (Relative Opportunity Index)"), use_container_width=True, config={"displayModeBar": False})
 
 def render_speed_chart():
-    labels = ['Conventional', 'Pheno', 'ASTar', 'VITEK REVEAL', 'dRAST', 'QuickMIC']
+    labels = ['Conventional (>24h)', 'Pheno (~7h)', 'ASTar (~6h)', 'VITEK REVEAL (~5.5h)', 'dRAST (~4h)', 'QuickMIC (2-4h)']
     times = [24, 7, 6, 5.75, 4, 3]
-    colors = [SLATE_LIGHT, '#f97316', '#f59e0b', '#fbbf24', BURGUNDY_SOFT, BURGUNDY]
+    colors = [SLATE_LIGHT, SLATE_LIGHT, SLATE_LIGHT, SLATE_LIGHT, BURGUNDY_SOFT, BURGUNDY]
+
+    # Reversing arrays so quickest is at the top of the chart
+    labels.reverse()
+    times.reverse()
+    colors.reverse()
 
     fig = go.Figure(go.Bar(
         x=times, 
@@ -689,7 +641,8 @@ def render_speed_chart():
         orientation='h', 
         marker_color=colors,
         text=[f"{t} hrs" for t in times],
-        textposition='outside'
+        textposition='outside',
+        textfont=dict(weight="bold", color=INK)
     ))
     
     fig.update_layout(showlegend=False)
@@ -706,7 +659,8 @@ def render_pricing_chart():
         y=prices,
         marker_color=colors,
         text=[f"${p}" for p in prices],
-        textposition='auto'
+        textposition='auto',
+        textfont=dict(color="white", weight="bold")
     ))
     fig.update_layout(showlegend=False)
     fig.update_yaxes(title_text="Consumable ASP ($)")
@@ -715,14 +669,19 @@ def render_pricing_chart():
 def render_competitor_scatter():
     comps = [
         {"name": "QuickMIC", "time": 3, "prem": 9, "color": BURGUNDY},
-        {"name": "dRAST", "time": 4, "prem": 8, "color": BURGUNDY_MID},
+        {"name": "dRAST", "time": 4, "prem": 8, "color": BURGUNDY_SOFT},
         {"name": "VITEK REVEAL", "time": 5.75, "prem": 9.5, "color": SLATE},
-        {"name": "ASTar", "time": 6, "prem": 7.5, "color": SLATE_LIGHT},
-        {"name": "Pheno", "time": 7, "prem": 8, "color": "#f97316"},
+        {"name": "ASTar", "time": 6, "prem": 7.5, "color": SLATE},
+        {"name": "Pheno", "time": 7, "prem": 8, "color": SLATE_LIGHT},
         {"name": "Conventional", "time": 24, "prem": 2, "color": ROSE},
     ]
 
     fig = go.Figure()
+    
+    # Add Shaded "Premium Zone" Quadrant (Magic Quadrant Style)
+    fig.add_shape(type="rect", x0=5, x1=-2, y0=7.5, y1=11, fillcolor="rgba(91,15,46,0.06)", line=dict(width=0), layer="below")
+    fig.add_annotation(x=1.5, y=10.5, text="Premium Innovation Zone", showarrow=False, font=dict(color=BURGUNDY, size=14, weight="bold"))
+
     for c in comps:
         fig.add_trace(go.Scatter(
             x=[c["time"]], y=[c["prem"]],
@@ -730,29 +689,30 @@ def render_competitor_scatter():
             name=c["name"],
             text=[c["name"]],
             textposition="top center",
-            marker=dict(size=14, color=c["color"])
+            marker=dict(size=16, color=c["color"], line=dict(width=2, color="white"))
         ))
     
     fig.update_layout(showlegend=False)
-    fig.update_xaxes(title_text="Time to Result (Hours) ← Closer to 0 is Better", autorange="reversed", range=[26, -2])
-    fig.update_yaxes(title_text="Premium Pricing Power (Score)", range=[0, 11])
+    fig.update_xaxes(title_text="Time to Result (Hours) ← Closer to 0 is Better", autorange="reversed", range=[26, -2], gridcolor="rgba(0,0,0,0.1)")
+    fig.update_yaxes(title_text="Premium Pricing Power (Score)", range=[0, 11], gridcolor="rgba(0,0,0,0.1)")
     st.plotly_chart(apply_theme(fig, "Speed vs. Premium Positioning"), use_container_width=True, config={"displayModeBar": False})
 
 def render_competitor_matrix():
     data = pd.DataFrame({
         "Speed": [5, 4, 3.5, 3.5, 3.5, 3],
-        "Installed Base": [1, 2, 2.5, 5, 1, 5],
         "Workflow": [3, 3, 4, 5, 4, 4],
         "Scale": [2, 2, 3, 5, 2, 5],
-    }, index=["QuickMIC", "dRAST", "ASTar", "REVEAL", "Selux", "Bruker"])
+        "Installed Base": [1, 2, 2.5, 5, 1, 5],
+    }, index=["QuickMIC", "dRAST", "ASTar", "REVEAL", "Selux", "Incumbents"])
 
     fig = px.imshow(
         data.values, x=data.columns, y=data.index, aspect="auto",
         color_continuous_scale=[[0, "#FAF5F7"], [0.5, GOLD], [1, BURGUNDY]],
         text_auto=True
     )
-    fig.update_layout(coloraxis_showscale=False)
-    st.plotly_chart(apply_theme(fig, "Capability & Threat Matrix (1=Low, 5=High)"), use_container_width=True, config={"displayModeBar": False})
+    fig.update_layout(coloraxis_showscale=False, margin=dict(l=10, r=10, t=50, b=10))
+    st.plotly_chart(apply_theme(fig, "Capability & Threat Scorecard (1=Low, 5=High)"), use_container_width=True, config={"displayModeBar": False})
+
 
 # =========================
 # Main app logic & Security Gate
@@ -831,7 +791,7 @@ st.markdown('<div class="main-shell">', unsafe_allow_html=True)
 
 # Router
 if page == "Executive Overview":
-    page_header("Executive Overview & Metrics", f"Prepared for {CLIENT_NAME}. Demand expansion, speed economics, geographic scaling, and competitive benchmarking.")
+    page_header("Executive Overview & Metrics", f"Demand expansion, speed economics, geographic scaling, and competitive benchmarking.")
     
     c1, c2, c3, c4 = st.columns(4)
     with c1: card_metric("TAM 2035", QUICK_METRICS["TAM 2035 (Broad Micro)"], "Total AST Ecosystem")
@@ -841,7 +801,7 @@ if page == "Executive Overview":
 
     st.markdown("<br>", unsafe_allow_html=True)
     
-    colA, colB = st.columns([1, 1])
+    colA, colB = st.columns([1.1, 1])
     with colA:
         section_open("Market Trajectory", "SOM grows significantly faster than broader TAM.")
         render_market_layers_chart()
@@ -854,22 +814,30 @@ if page == "Executive Overview":
     page_footer()
 
 else:
-    # 100% Safe rendering logic (No HTML splitting)
+    # 100% Safe rendering logic (no HTML splits, no hidden tags)
+    st.markdown(
+        f"""
+        <div class="report-shell">
+            <div class="report-card">
+        """,
+        unsafe_allow_html=True,
+    )
+    
     st.markdown(CHAPTERS_TOP[page], unsafe_allow_html=True)
     
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # Inject the specific charts dynamically into the middle of the chapter
+    # Inject the specific charts dynamically
     if "1. " in page:
         render_market_layers_chart()
     elif "2. " in page:
-        c1, c2 = st.columns(2)
+        c1, c2 = st.columns([1.2, 1])
         with c1: render_regional_chart()
-        with c2: render_country_bar()
+        with c2: render_country_index()
     elif "3. " in page:
         render_speed_chart()
     elif "4. " in page:
-        c1, c2 = st.columns(2)
+        c1, c2 = st.columns([1.2, 1])
         with c1: render_competitor_scatter()
         with c2: render_pricing_chart()
         st.markdown("<br>", unsafe_allow_html=True)
@@ -879,6 +847,24 @@ else:
     
     st.markdown(CHAPTERS_BOTTOM[page], unsafe_allow_html=True)
     
+    st.markdown("</div></div><br>", unsafe_allow_html=True)
+    
+    # Footer Navigation
+    idx = nav_options.index(page)
+    col1, col2 = st.columns([1, 1])
+    with col1:
+        if idx > 0:
+            if st.button("⬅ Previous"):
+                st.session_state["nav_choice"] = nav_options[idx - 1]
+                try: st.rerun()
+                except AttributeError: st.experimental_rerun()
+    with col2:
+        if idx < len(nav_options) - 1:
+            if st.button("Next ➡"):
+                st.session_state["nav_choice"] = nav_options[idx + 1]
+                try: st.rerun()
+                except AttributeError: st.experimental_rerun()
+                
     page_footer()
 
 st.markdown('</div>', unsafe_allow_html=True)
